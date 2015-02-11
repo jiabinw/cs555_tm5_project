@@ -48,7 +48,7 @@ public class Main {
 //                System.out.println("DEATH: " + individualInfoObjMap.get(id).getDeathDate());
 //                System.out.println("MARRIAGE: " + individualInfoObjMap.get(id).getMarriageDate());
 //                System.out.println("DIVORCE: " + individualInfoObjMap.get(id).getDivorceDate());
-//                System.out.println("");
+                System.out.println("");
             }
             
             System.out.println("\n***** Displaying Family Information *****\n");

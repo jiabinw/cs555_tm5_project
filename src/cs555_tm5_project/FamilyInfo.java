@@ -33,5 +33,11 @@ public class FamilyInfo {
 
     public void setChildren(ArrayList<Integer> children) {
         this.children = children;
+        
+        
+        
+        
+        
+        
     }
 }

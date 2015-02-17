@@ -14,7 +14,7 @@ Savio Dcruz: sdcruz@stevens.edu
 
 The user story list:  
 
-docs.google.com/spreadsheets/d/16YgnTx_hzmjz_YKjfVXCRj1DT238A0mDWo4mpg_PI40/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/16YgnTx_hzmjz_YKjfVXCRj1DT238A0mDWo4mpg_PI40/edit?usp=sharing
 
 The project report: 
 

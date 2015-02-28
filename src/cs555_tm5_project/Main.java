@@ -8,8 +8,11 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +23,12 @@ import java.util.logging.Logger;
 public class Main {
     private static HashMap<Integer, IndividualInfo> individualInfoObjMap = new HashMap<Integer, IndividualInfo>();
     private static HashMap<Integer, FamilyInfo> familyInfoObjMap = new HashMap<Integer, FamilyInfo>();
+    private static HashMap<String, Integer> monthMap = new HashMap<String, Integer>();
     
     public static void main(String[] args) {
         try {
+        	populateMonthMap();
+        	
             File dir = new File(".");
             
             //Clear the contents of output.txt
@@ -43,11 +49,9 @@ public class Main {
 
                 System.out.println(id);
                 System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
-//                System.out.println("SEX: " + individualInfoObjMap.get(id).getSex());
-//                System.out.println("BIRTH: " + individualInfoObjMap.get(id).getBirthDate());
-//                System.out.println("DEATH: " + individualInfoObjMap.get(id).getDeathDate());
-//                System.out.println("MARRIAGE: " + individualInfoObjMap.get(id).getMarriageDate());
-//                System.out.println("DIVORCE: " + individualInfoObjMap.get(id).getDivorceDate());
+                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
+                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
+                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
                 System.out.println("");
             }
             
@@ -61,10 +65,13 @@ public class Main {
                 System.out.println(id);
                 System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
                 System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
+                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
+                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
                 
-//                for(String child: familyInfoObjMap.get(id).getChildren()) {
-//                    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
-//                }
+                for(int child: familyInfoObjMap.get(retval).getChildren()) {
+                    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
+                }
+                
                 
                 System.out.println("");
             }
@@ -75,7 +82,7 @@ public class Main {
     
     private static void readFile(File fin) throws IOException {
         //List of valid tag names
-	String[] tags = {"INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", 
+    	String[] tags = {"INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", 
             "FAM", "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "TRLR", "NOTE"};
         ArrayList<String> tagList = new ArrayList<>(Arrays.asList(tags));
         
@@ -124,7 +131,8 @@ public class Main {
                             tagStr = "Tag: " + retval + "\n";
                         } else {
                             tagVal = retval;
-                        }    
+                        }
+                        break;
                     default :
                         break;
                 }
@@ -161,12 +169,6 @@ public class Main {
                             break;
                         case "DEAT" :
                             dateCode = "DH";
-                            break;
-                        case "MARR" :
-                            dateCode = "MR";
-                            break; 
-                        case "DIV" :
-                            dateCode = "DR";
                             break;
                         case "FAMC" :
                             temp = tagVal.replace("@", "");
@@ -206,6 +208,12 @@ public class Main {
                             temp = temp.replace("I", "");
                             famInfo.getChildren().add(Integer.parseInt(temp));
                             familyInfoObjMap.put(fam_ID, famInfo);
+                            break;
+                        case "MARR" :
+                            dateCode = "MR";
+                            break; 
+                        case "DIV" :
+                            dateCode = "DR";
                             break;    
                         default :
                             break;
@@ -217,20 +225,20 @@ public class Main {
                 switch(dateCode)
                 {
                     case "BH" :
-                        indiInfo.setBirthDate(tagVal);
+                        indiInfo.setBirthDate(convertStrToDate(tagVal));
                         individualInfoObjMap.put(indi_ID, indiInfo);
                         break;
                     case "DH" :
-                        indiInfo.setDeathDate(tagVal);
+                        indiInfo.setDeathDate(convertStrToDate(tagVal));
                         individualInfoObjMap.put(indi_ID, indiInfo);
                         break;
                     case "MR" :
-                        indiInfo.setMarriageDate(tagVal);
-                        individualInfoObjMap.put(indi_ID, indiInfo);
+                    	famInfo.setMarriageDate(convertStrToDate(tagVal));
+                    	familyInfoObjMap.put(fam_ID, famInfo);
                         break;
                     case "DR" :
-                        indiInfo.setDivorceDate(tagVal);
-                        individualInfoObjMap.put(indi_ID, indiInfo);
+                    	famInfo.setDivorceDate(convertStrToDate(tagVal));
+                    	familyInfoObjMap.put(fam_ID, famInfo);
                         break;     
                     default :
                         break;
@@ -242,7 +250,8 @@ public class Main {
             tagVal = "";
             
             writeToFile(tagStr);
-  	}
+        }
+        
         br.close();
     }
     
@@ -256,5 +265,35 @@ public class Main {
         bw.newLine();
         bw.close();
         fw.close();
+    }
+    
+    private static Date convertStrToDate(String date) {
+    	String dateVal[] = date.split(" ", 3);
+    	String formattedDateStr = dateVal[2] + "/" + monthMap.get(dateVal[1]) + "/" + dateVal[0];
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+	    Date utilDate = null;
+	    
+	    try {
+			utilDate = formatter.parse(formattedDateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	    
+	    return utilDate;
+	}
+    
+    private static void populateMonthMap() {
+    	monthMap.put("JAN", 1);
+    	monthMap.put("FEB", 2);
+    	monthMap.put("MAR", 3);
+    	monthMap.put("APR", 4);
+    	monthMap.put("MAY", 5);
+    	monthMap.put("JUN", 6);
+    	monthMap.put("JUL", 7);
+    	monthMap.put("AUG", 8);
+    	monthMap.put("SEP", 9);
+    	monthMap.put("OCT", 10);
+    	monthMap.put("NOV", 11);
+    	monthMap.put("DEC", 12);
     }
 }

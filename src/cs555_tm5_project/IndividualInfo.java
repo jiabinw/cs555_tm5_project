@@ -1,5 +1,7 @@
 package cs555_tm5_project;
 
+import java.util.Date;
+
 
 /**
  *
@@ -8,10 +10,8 @@ package cs555_tm5_project;
 public class IndividualInfo {
     private String name = "";
     private String sex = "";
-    private String birthDate = "";
-    private String deathDate = "";
-    private String marriageDate = "";
-    private String divorceDate = "";
+    private Date birthDate = null;
+    private Date deathDate = null;
     private int childOfFamPtr;
     private int spouseOfFamPtr;
 
@@ -31,39 +31,23 @@ public class IndividualInfo {
         this.sex = sex;
     }
 
-    public String getBirthDate() {
-        return birthDate;
-    }
+    public Date getBirthDate() {
+		return birthDate;
+	}
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
 
-    public String getDeathDate() {
-        return deathDate;
-    }
+	public Date getDeathDate() {
+		return deathDate;
+	}
 
-    public void setDeathDate(String deathDate) {
-        this.deathDate = deathDate;
-    }
+	public void setDeathDate(Date deathDate) {
+		this.deathDate = deathDate;
+	}
 
-    public String getMarriageDate() {
-        return marriageDate;
-    }
-
-    public void setMarriageDate(String marriageDate) {
-        this.marriageDate = marriageDate;
-    }
-
-    public String getDivorceDate() {
-        return divorceDate;
-    }
-
-    public void setDivorceDate(String divorceDate) {
-        this.divorceDate = divorceDate;
-    }
-
-    public int getChildOfFamPtr() {
+	public int getChildOfFamPtr() {
         return childOfFamPtr;
     }
 
@@ -78,6 +62,4 @@ public class IndividualInfo {
     public void setSpouseOfFamPtr(int spouseOfFamPtr) {
         this.spouseOfFamPtr = spouseOfFamPtr;
     }
-    
-    
 }

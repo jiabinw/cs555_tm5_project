@@ -6,11 +6,11 @@ The team member contact infomation:
 
 Jiabin Wang: jwang70@stevens.edu
 
-Hitesh Jain:hjain1@stevens.edu
+Hitesh Jain: hjain1@stevens.edu
 
 Savio Dcruz: sdcruz@stevens.edu
 
-
+Siyuan Zheng: szhang28@stevens.edu
 
 The user story list:  
 

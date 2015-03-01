@@ -7,6 +7,7 @@ import java.util.Date;
  *
  * @author savio_000
  */
+//Test comment for Git sync check in
 public class FamilyInfo {
     private int husband;
     private int wife;

@@ -32,29 +32,29 @@ public class Main {
             File dir = new File(".");
             
             //Clear the contents of output.txt
-            String outputFileLoc = dir.getCanonicalPath().substring(dir.getCanonicalPath().lastIndexOf(File.separator))+File.separator+ "src" + File.separator + "output.txt";
-            System.out.print(outputFileLoc);
+            String outputFileLoc = dir.getCanonicalPath()+File.separator+"src"+File.separator+"Output"+File.separator+"Output.txt";
+         
             FileWriter fw = new FileWriter(outputFileLoc);
             fw.close();
-            System.out.print(outputFileLoc);
+           
             //Read from gedcom.ged file
-//            File fin = new File(dir.getCanonicalPath() + File.separator + "Jiabin_Wang_P01.ged");
-//            readFile(fin);
-//            
-//            System.out.println("***** Displaying Individual Information *****\n");
-//            
-//            Object[] indiKey = individualInfoObjMap.keySet().toArray();
-//            Arrays.sort(indiKey);
-//            for(Object retval: indiKey) {
-//                String id =  "@I" + retval.toString() + "@";
-//
-//                System.out.println(id);
-//                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
-//                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
-//                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
-//                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
-//                System.out.println("");
+            File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "Jiabin_Wang_P01.ged");
+            readFile(fin);
             
+            System.out.println("***** Displaying Individual Information *****\n");
+            
+            Object[] indiKey = individualInfoObjMap.keySet().toArray();
+            Arrays.sort(indiKey);
+            for(Object retval: indiKey) {
+                String id =  "@I" + retval.toString() + "@";
+
+                System.out.println(id);
+                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
+                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
+                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
+                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
+                System.out.println("");
+            }
             
             System.out.println("\n***** Displaying Family Information *****\n");
             

@@ -40,10 +40,10 @@ public class SavioFunction {
             			IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
             			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
             			
-            			if(husbandInfo.getDeathDate()!=null && husbandInfo.getDeathDate().before(marriageDate))
+            			if(husbandInfo!=null && husbandInfo.getDeathDate()!=null && husbandInfo.getDeathDate().before(marriageDate))
             				System.out.println(husbandInfo.getName() + " has an incorrect Marriage or Death Date.");
             			
-            			if(wifeInfo.getDeathDate()!=null && wifeInfo.getDeathDate().before(marriageDate))
+            			if(wifeInfo!=null && wifeInfo.getDeathDate()!=null && wifeInfo.getDeathDate().before(marriageDate))
             				System.out.println(wifeInfo.getName() + " has an incorrect Marriage or Death Date.");
             		}
             	}

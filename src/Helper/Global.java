@@ -53,4 +53,3 @@ public static boolean IsDateValid(Date YourDate)//To Check if it is a valid cale
 }
 
 }
-

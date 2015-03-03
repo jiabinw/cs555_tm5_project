@@ -38,44 +38,46 @@ public class Main {
             fw.close();
            
             //Read from gedcom.ged file
-            File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "Jiabin_Wang_P01.ged");
+            File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "StevensFamily.ged");
             readFile(fin);
             
-            System.out.println("***** Displaying Individual Information *****\n");
+           // System.out.println("***** Displaying Individual Information *****\n");
             
             Object[] indiKey = individualInfoObjMap.keySet().toArray();
             Arrays.sort(indiKey);
             for(Object retval: indiKey) {
                 String id =  "@I" + retval.toString() + "@";
 
-                System.out.println(id);
-                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
-                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
-                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
-                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
-                System.out.println("");
+//                System.out.println(id);
+//                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
+//                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
+//                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
+//                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
+//                System.out.println("");
             }
             
-            System.out.println("\n***** Displaying Family Information *****\n");
+           // System.out.println("\n***** Displaying Family Information *****\n");
             
             Object[] famKey = familyInfoObjMap.keySet().toArray();
             Arrays.sort(famKey);
             for(Object retval: famKey) {
                 String id =  "@F" + retval.toString() + "@";
                 
-                System.out.println(id);
-                System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
-                System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
-                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
-                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
+//                System.out.println(id);
+//                System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
+//                System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
+//                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
+//                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
                 
                 for(int child: familyInfoObjMap.get(retval).getChildren()) {
-                    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
+                //    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
                 }
                 
                 
-                System.out.println("");
+              //  System.out.println("");
             }
+           // MemberFunction.HiteshFunction.CheckIsDateValid(individualInfoObjMap, familyInfoObjMap);
+            MemberFunction.HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
         } catch(IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -223,28 +225,77 @@ public class Main {
             }
             
             if(!dateCode.isEmpty() && tag.toUpperCase().equals("DATE")) {
+           
                 switch(dateCode)
                 {
                     case "BH" :
+                    	
+                    	if(convertStrToDate(tagVal)!=null)
+                    	{
+                    	//============SPRINT ITEM - INVALID DATE VALIDATION- HITESH=========//
                         indiInfo.setBirthDate(convertStrToDate(tagVal));
                         individualInfoObjMap.put(indi_ID, indiInfo);
+                    	}
+                    	else
+                    	{
+                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Birth date");
+                    	indiInfo.setBirthDate(null);
+                    	individualInfoObjMap.put(indi_ID, indiInfo);
+                    	}
                         break;
                     case "DH" :
+                    	if(convertStrToDate(tagVal)!=null)
+                    	{
+                    	//============SPRINT ITEM - INVALID DATE VALIDATION- HITESH=========//
                         indiInfo.setDeathDate(convertStrToDate(tagVal));
                         individualInfoObjMap.put(indi_ID, indiInfo);
+                    	}
+                    	else
+                    	{
+                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Death date");
+                    	indiInfo.setDeathDate(null);
+                    	individualInfoObjMap.put(indi_ID, indiInfo);
+                    	}
                         break;
+                      
                     case "MR" :
+                    	if(convertStrToDate(tagVal)!=null)
+                    	{
+                    	//============SPRINT ITEM - INVALID DATE VALIDATION- HITESH=========//
                     	famInfo.setMarriageDate(convertStrToDate(tagVal));
                     	familyInfoObjMap.put(fam_ID, famInfo);
+                    	}
+                    	else
+                    	{
+                    		String Hus=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getHusband()).getName();
+                    		String Wife=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getWife()).getName();
+                    		System.out.println(Hus+" and "+Wife+" have an Invalid Marriage date");
+                    		famInfo.setMarriageDate(null);
+                        	familyInfoObjMap.put(fam_ID, famInfo);
+                    	}
+                    	
                         break;
                     case "DR" :
+                    	if(convertStrToDate(tagVal)!=null)
+                    	{
+                    	//============SPRINT ITEM - INVALID DATE VALIDATION- HITESH=========//
                     	famInfo.setDivorceDate(convertStrToDate(tagVal));
                     	familyInfoObjMap.put(fam_ID, famInfo);
+                    	}
+                    	else
+                    	{
+                    		String Hus=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getHusband()).getName();
+                    		String Wife=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getWife()).getName();
+                    		System.out.println(Hus+" and "+Wife+" have an Invalid Divorce date");
+                    		famInfo.setDivorceDate(null);
+                        	familyInfoObjMap.put(fam_ID, famInfo);
+                    	}
                         break;     
                     default :
                         break;
                 }
                 dateCode = "";
+           
             }
             
             tag = "";
@@ -268,16 +319,20 @@ public class Main {
         fw.close();
     }
     
-    private static Date convertStrToDate(String date) {
+    public static Date convertStrToDate(String date) {
     	String dateVal[] = date.split(" ", 3);
     	String formattedDateStr = dateVal[2] + "/" + monthMap.get(dateVal[1]) + "/" + dateVal[0];
 	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+	    //============SPRINT ITEM - INVALID DATE VALIDATION- HITESH=========//
+	    formatter.setLenient(false);
+	    //=================================================================//
 	    Date utilDate = null;
 	    
 	    try {
 			utilDate = formatter.parse(formattedDateStr);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			return null;
+			
 		}
 	    
 	    return utilDate;

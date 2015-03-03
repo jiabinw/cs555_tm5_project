@@ -52,5 +52,15 @@ public static boolean IsDateValid(Date YourDate)//To Check if it is a valid cale
 	 }
 }
 
+	public static String rebuildIdentifier(String id, char type) {
+		String formedID = "";
+		
+		if(type=='I')
+			formedID =  "@I" + id + "@";
+		else if(type=='F')
+			formedID =  "@F" + id + "@";
+		
+		return formedID;
+	}
 }
 

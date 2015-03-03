@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import MemberFunction.SavioFunction;
+
 /**
  * @author Savio Dcruz
  */
@@ -41,41 +43,42 @@ public class Main {
             File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "Jiabin_Wang_P01.ged");
             readFile(fin);
             
-            System.out.println("***** Displaying Individual Information *****\n");
+            UserStoryMethods();
             
-            Object[] indiKey = individualInfoObjMap.keySet().toArray();
-            Arrays.sort(indiKey);
-            for(Object retval: indiKey) {
-                String id =  "@I" + retval.toString() + "@";
-
-                System.out.println(id);
-                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
-                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
-                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
-                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
-                System.out.println("");
-            }
-            
-            System.out.println("\n***** Displaying Family Information *****\n");
-            
-            Object[] famKey = familyInfoObjMap.keySet().toArray();
-            Arrays.sort(famKey);
-            for(Object retval: famKey) {
-                String id =  "@F" + retval.toString() + "@";
-                
-                System.out.println(id);
-                System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
-                System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
-                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
-                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
-                
-                for(int child: familyInfoObjMap.get(retval).getChildren()) {
-                    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
-                }
-                
-                
-                System.out.println("");
-            }
+//            System.out.println("***** Displaying Individual Information *****\n");
+//            
+//            Object[] indiKey = individualInfoObjMap.keySet().toArray();
+//            Arrays.sort(indiKey);
+//            for(Object retval: indiKey) {
+//                String id =  "@I" + retval.toString() + "@";
+//
+//                System.out.println(id);
+//                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
+//                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
+//                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
+//                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
+//                System.out.println("");
+//            }
+//            
+//            System.out.println("\n***** Displaying Family Information *****\n");
+//            
+//            Object[] famKey = familyInfoObjMap.keySet().toArray();
+//            Arrays.sort(famKey);
+//            for(Object retval: famKey) {
+//                String id =  "@F" + retval.toString() + "@";
+//                
+//                System.out.println(id);
+//                System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
+//                System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
+//                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
+//                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
+//                
+//                for(int child: familyInfoObjMap.get(retval).getChildren()) {
+//                    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
+//                }
+//                
+//                System.out.println("");
+//            }
         } catch(IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,6 +285,11 @@ public class Main {
 	    
 	    return utilDate;
 	}
+    
+    private static void UserStoryMethods() {
+    	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
+        SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
+    }
     
     private static void populateMonthMap() {
     	monthMap.put("JAN", 1);

@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import MemberFunction.SavioFunction;
+
 /**
  * @author Savio Dcruz
  */
@@ -38,8 +40,10 @@ public class Main {
             fw.close();
            
             //Read from gedcom.ged file
-            File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "StevensFamily.ged");
+            File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "Jiabin_Wang_P01.ged");
             readFile(fin);
+            
+            UserStoryMethods();
             
            // System.out.println("***** Displaying Individual Information *****\n");
             
@@ -337,6 +341,11 @@ public class Main {
 	    
 	    return utilDate;
 	}
+    
+    private static void UserStoryMethods() {
+    	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
+        SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
+    }
     
     private static void populateMonthMap() {
     	monthMap.put("JAN", 1);

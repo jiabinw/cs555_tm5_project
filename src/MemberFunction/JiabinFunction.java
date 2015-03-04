@@ -27,11 +27,6 @@ public class JiabinFunction {
 			}							
 		}
 		
-		for(Map.Entry<Date, ArrayList<IndividualInfo>> entry : hash.entrySet()){
-			if(entry.getValue().size() == 1){
-				hash.remove(entry.getKey());
-			}
-		}
 		
 		System.out.println("");
 		System.out.println("-----------------------------------");
@@ -42,9 +37,11 @@ public class JiabinFunction {
 	    	System.out.println("No people has the same birthday.");
 	    }else{
 	    	for(Map.Entry<Date, ArrayList<IndividualInfo>> entry : hash.entrySet()){
-	    		System.out.println("Birthday: "+ entry.getKey().toString());
-	    		for(IndividualInfo indi : entry.getValue()){
-	    			System.out.println("Name: "+ indi.getName());
+	    		if(entry.getValue().size() != 1){
+		    		System.out.println("Birthday: "+ entry.getKey().toString());
+		    		for(IndividualInfo indi : entry.getValue()){
+		    			System.out.println("Name: "+ indi.getName());
+		    		}
 	    		}
 	    	}
 	    }		

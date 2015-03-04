@@ -69,19 +69,24 @@ public class SiyuanFunction {
 				FamilyInfo famInfo = (FamilyInfo) familyInfo.get(fam);
 
 				if (famInfo.getHusband() != 0 && famInfo.getWife() != 0) {
+					
 					IndividualInfo dadInfo = (IndividualInfo) individualInfo
 							.get(famInfo.getHusband());
-					Date dadBirth = (Date) dadInfo.getBirthDate();
+					
 					IndividualInfo momInfo = (IndividualInfo) individualInfo
 							.get(famInfo.getWife());
+					if(dadInfo.getBirthDate()!=null && momInfo.getBirthDate()!=null){
+					Date dadBirth = (Date) dadInfo.getBirthDate();
 					Date momBirth = (Date) momInfo.getBirthDate();
-
+         
 					if (famInfo.getChildren() != null) {
+						
 						ArrayList<Integer> children = famInfo.getChildren();
 
 						for (Integer child : children) {
 							IndividualInfo childInfo = (IndividualInfo) individualInfo
 									.get(child);
+							if(childInfo.getBirthDate()!=null){
 							Date childBirth = childInfo.getBirthDate();
 
 							if (!(childBirth.after(momBirth) && childBirth
@@ -92,6 +97,8 @@ public class SiyuanFunction {
 								System.out.println("Wrong birthday for child :"
 										+ childId + childInfo.getName());
 							}
+							}
+						}
 						}
 					}
 				}

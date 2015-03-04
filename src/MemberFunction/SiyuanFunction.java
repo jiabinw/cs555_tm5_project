@@ -76,15 +76,11 @@ public class SiyuanFunction {
 					IndividualInfo momInfo = (IndividualInfo) individualInfo
 							.get(famInfo.getWife());
 					if(dadInfo.getBirthDate()!=null && momInfo.getBirthDate()!=null){
-<<<<<<< HEAD
 					Date dadBirth = (Date) dadInfo.getBirthDate();
 					Date momBirth = (Date) momInfo.getBirthDate();
          
-=======
-					Date momBirth = (Date) momInfo.getBirthDate();
-					Date dadBirth = (Date) dadInfo.getBirthDate();
+					
 
->>>>>>> FETCH_HEAD
 					if (famInfo.getChildren() != null) {
 						
 						ArrayList<Integer> children = famInfo.getChildren();
@@ -111,11 +107,11 @@ public class SiyuanFunction {
 				}
 				}
 
+				System.out.println("-----------------------------");
+				System.out.println("End of Output for US08 ");
+				System.out.println("-----------------------------\n");
 			}
-		}
-		System.out.println("-----------------------------");
-		System.out.println("End of Output for US08 ");
-		System.out.println("-----------------------------\n");
-
+		
+		
 	}
-}
+

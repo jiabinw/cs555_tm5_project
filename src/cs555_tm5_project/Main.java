@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import MemberFunction.HiteshFunction;
+import MemberFunction.JiabinFunction;
 import MemberFunction.SavioFunction;
-import Helper.Global;
 
 /**
  * @author Savio Dcruz, Jiabin Wang, Hitesh Jain, Siyuan Zheng
@@ -308,6 +309,10 @@ public class Main {
     private static void UserStoryMethods() {
     	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
         SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
+        HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
+        JiabinFunction.MarriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
+        JiabinFunction.ShowWhoHasSameBirthday(individualInfoObjMap);
+        
     }
     
     private static void populateMonthMap() {

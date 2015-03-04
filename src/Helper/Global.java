@@ -13,6 +13,7 @@ import cs555_tm5_project.IndividualInfo;
 
 //import java.util.Arrays;
 //author Hitesh
+
 public class Global {
 	
 	public static final int legalMarriageAge = 18;
@@ -102,28 +103,28 @@ public class Global {
 	
    public static int AgeAtSpecificTime(Date birth, Date specificTime){
 	   
-	   if(specificTime.after(birth)){
-		   long diff = specificTime.getTime() - birth.getTime();
-		   int age = (int) diff/(365*24*3600*1000);
-		   return age;
-	   }else{
-		   throw new IllegalArgumentException("specificTime is before or equal to birth date.");
+	   if(birth != null && specificTime != null ){	   
+		   if(specificTime.after(birth)){
+			   long diff = specificTime.getTime() - birth.getTime();
+			   int age = (int) diff/(365*24*3600*1000);
+			   return age;
+		   }else{
+			   return -1;
+		   }
 	   }   
+	   return -1;
    }	
+
+
+	public static String rebuildIdentifier(String id, char type) {
+		String formedID = "";
+		
+		if(type=='I')
+			formedID =  "@I" + id + "@";
+		else if(type=='F')
+			formedID =  "@F" + id + "@";
+		
+		return formedID;
+	}
 }
 
-<<<<<<< Updated upstream
-public static String rebuildIdentifier(String id, char type) {
-	String formedID = "";
-	
-	if(type=='I')
-		formedID =  "@I" + id + "@";
-	else if(type=='F')
-		formedID =  "@F" + id + "@";
-	
-	return formedID;
-}
-
-}
-=======
->>>>>>> Stashed changes

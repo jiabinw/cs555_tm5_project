@@ -14,7 +14,7 @@ public class JiabinFunctionTest {
 	
 	
 	@Test
-	public void testMarriageToDead() {
+	public void testShowWhoHasSameBirthday() {
 		
 		
 		

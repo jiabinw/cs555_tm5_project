@@ -8,15 +8,37 @@ import java.util.Map;
 import Helper.Global;
 import cs555_tm5_project.FamilyInfo;
 import cs555_tm5_project.IndividualInfo;
-import cs555_tm5_project.Main;
 
 public class JiabinFunction {
 	
-	public static void ShowWhoHasSameBirthday(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
-		HashMap<Date, >
+	//ShowWhoHasSameBirthday
+	public static HashMap<Date, ArrayList<IndividualInfo>> ShowWhoHasSameBirthday(HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		HashMap<Date, ArrayList<IndividualInfo>> hash = new HashMap<Date, ArrayList<IndividualInfo>>();
 		
+		for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+			if(hash.containsKey(entry.getValue().getBirthDate())){
+				hash.get(entry.getValue().getBirthDate()).add(entry.getValue());
+			}else{
+				ArrayList<IndividualInfo> array = new ArrayList<IndividualInfo>();
+				array.add(entry.getValue());
+				hash.put(entry.getValue().getBirthDate(), array);
+			}				
+		}
 		
+		System.out.println("");
+		System.out.println("-----------------------------------");
+		System.out.println("-----Marriage Before Legal Age-----");
+		System.out.println("-----------------------------------");
 		
+	    if(hash.isEmpty()){
+	    	System.out.println("No people has the same birthday.");
+	    }else{
+	    	for(Map.Entry<Date, ArrayList<IndividualInfo>> entry : hash.entrySet()){
+	    		System.out.println("B");
+	    	}
+	    }
+		
+		return hash;
 	}
 	
 	//MarriageBeforeLegalAge 

@@ -1,6 +1,5 @@
 package cs555_tm5_project;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,70 +17,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import MemberFunction.SavioFunction;
+import Helper.Global;
 
 /**
- * @author Savio Dcruz
+ * @author Savio Dcruz, Jiabin Wang, Hitesh Jain, Siyuan Zheng
  */
+
 public class Main {
+	
     private static HashMap<Integer, IndividualInfo> individualInfoObjMap = new HashMap<Integer, IndividualInfo>();
     private static HashMap<Integer, FamilyInfo> familyInfoObjMap = new HashMap<Integer, FamilyInfo>();
     private static HashMap<String, Integer> monthMap = new HashMap<String, Integer>();
     
     public static void main(String[] args) {
         try {
-        	populateMonthMap();
         	
+        	//INITILIZATION, INFLATE THE FAMILY INFO HASHMAP AND THE INDI INFO HASHMAP 
+        	populateMonthMap();
             File dir = new File(".");
-            
             //Clear the contents of output.txt
             String outputFileLoc = dir.getCanonicalPath()+File.separator+"src"+File.separator+"Output"+File.separator+"Output.txt";
-         
             FileWriter fw = new FileWriter(outputFileLoc);
             fw.close();
-           
             //Read from gedcom.ged file
             File fin = new File( dir.getCanonicalPath()+File.separator+"src"+File.separator+"GedComFiles"+File.separator+File.separator+ "Jiabin_Wang_P01.ged");
             readFile(fin);
             
             UserStoryMethods();
             
-           // System.out.println("***** Displaying Individual Information *****\n");
-            
-            Object[] indiKey = individualInfoObjMap.keySet().toArray();
-            Arrays.sort(indiKey);
-            for(Object retval: indiKey) {
-                String id =  "@I" + retval.toString() + "@";
-
-//                System.out.println(id);
-//                System.out.println("NAME: " + individualInfoObjMap.get(retval).getName());
-//                System.out.println("SEX: " + individualInfoObjMap.get(retval).getSex());
-//                System.out.println("BIRTH: " + individualInfoObjMap.get(retval).getBirthDate());
-//                System.out.println("DEATH: " + individualInfoObjMap.get(retval).getDeathDate());
-//                System.out.println("");
-            }
-            
-           // System.out.println("\n***** Displaying Family Information *****\n");
-            
-            Object[] famKey = familyInfoObjMap.keySet().toArray();
-            Arrays.sort(famKey);
-            for(Object retval: famKey) {
-                String id =  "@F" + retval.toString() + "@";
-                
-//                System.out.println(id);
-//                System.out.println("HUSBAND: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getHusband()).getName());
-//                System.out.println("WIFE: " + individualInfoObjMap.get(familyInfoObjMap.get(retval).getWife()).getName());
-//                System.out.println("MARRIAGE: " + familyInfoObjMap.get(retval).getMarriageDate());
-//                System.out.println("DIVORCE: " + familyInfoObjMap.get(retval).getDivorceDate());
-                
-                for(int child: familyInfoObjMap.get(retval).getChildren()) {
-                //    System.out.println("CHILD: " + individualInfoObjMap.get(child).getName());
-                }
-                
-                
-              //  System.out.println("");
-            }
-           // MemberFunction.HiteshFunction.CheckIsDateValid(individualInfoObjMap, familyInfoObjMap);
-            MemberFunction.HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
         } catch(IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

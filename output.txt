@@ -1150,6 +1150,7 @@ Invalid tag
 Level Number: 0
 Tag: TRLR
 
+<<<<<<< Updated upstream
 0 NOTE TM5
 Level Number: 0
 Tag: NOTE
@@ -1158,10 +1159,22 @@ Tag: NOTE
 Level Number: 0
 Tag: NOTE
 
+=======
+0 NOTE SAVIO DCRUZ
+Level Number: 0
+Tag: NOTE
+
+0 NOTE JIABIN WANG 
+Level Number: 0
+Tag: NOTE
+
+
+>>>>>>> Stashed changes
 0 HEAD
 Level Number: 0
 Invalid tag
 
+<<<<<<< Updated upstream
 1 SOUR Family Echo
 Level Number: 1
 Invalid tag
@@ -23655,6 +23668,237 @@ Level Number: 2
 Invalid tag
 
 2 _MARNM Stevens
+=======
+1 SOUR FTW
+Level Number: 1
+Invalid tag
+
+2 VERS 8.0
+Level Number: 2
+Invalid tag
+
+2 NAME Family Tree Maker for Windows
+Level Number: 2
+Tag: NAME
+
+2 CORP Genealogy.com
+Level Number: 2
+Invalid tag
+
+3 ADDR 39500 Stevenson Pl.  #204
+Level Number: 3
+Invalid tag
+
+4 CONT Fremont, CA 95439
+Level Number: 4
+Invalid tag
+
+3 PHON (510) 794-6850
+Level Number: 3
+Invalid tag
+
+1 DEST FTW
+Level Number: 1
+Invalid tag
+
+1 DATE 3 JUN 2001
+Level Number: 1
+Tag: DATE
+
+1 CHAR ANSEL
+Level Number: 1
+Invalid tag
+
+1 FILE C:\My Documents\Family Tree\Sample.GED
+Level Number: 1
+Invalid tag
+
+1 GEDC
+Level Number: 1
+Invalid tag
+
+2 VERS 5.5
+Level Number: 2
+Invalid tag
+
+2 FORM LINEAGE-LINKED
+Level Number: 2
+Invalid tag
+
+1 _SCHEMA
+Level Number: 1
+Invalid tag
+
+2 INDI
+Level Number: 2
+Tag: INDI
+
+3 _FA1
+Level Number: 3
+Invalid tag
+
+4 LABL Marriage fact
+Level Number: 4
+Invalid tag
+
+3 _FA2
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 2
+Level Number: 4
+Invalid tag
+
+3 _FA3
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 3
+Level Number: 4
+Invalid tag
+
+3 _FA4
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 4
+Level Number: 4
+Invalid tag
+
+3 _FA5
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 5
+Level Number: 4
+Invalid tag
+
+3 _FA6
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 6
+Level Number: 4
+Invalid tag
+
+3 _FA7
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 7
+Level Number: 4
+Invalid tag
+
+3 _FA8
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 8
+Level Number: 4
+Invalid tag
+
+3 _FA9
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 9
+Level Number: 4
+Invalid tag
+
+3 _FA10
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 10
+Level Number: 4
+Invalid tag
+
+3 _FA11
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 11
+Level Number: 4
+Invalid tag
+
+3 _FA12
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 12
+Level Number: 4
+Invalid tag
+
+3 _FA13
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 13
+Level Number: 4
+Invalid tag
+
+3 _MREL
+Level Number: 3
+Invalid tag
+
+4 LABL Relationship to Mother
+Level Number: 4
+Invalid tag
+
+3 _FREL
+Level Number: 3
+Invalid tag
+
+4 LABL Relationship to Father
+Level Number: 4
+Invalid tag
+
+2 FAM
+Level Number: 2
+Tag: FAM
+
+3 _FA1
+Level Number: 3
+Invalid tag
+
+4 LABL Marriage fact
+Level Number: 4
+Invalid tag
+
+3 _FA2
+Level Number: 3
+Invalid tag
+
+4 LABL Fact 2
+Level Number: 4
+Invalid tag
+
+3 _MSTAT
+Level Number: 3
+Invalid tag
+
+4 LABL Marriage Beginning Status
+Level Number: 4
+Invalid tag
+
+3 _MEND
+Level Number: 3
+Invalid tag
+
+4 LABL Marriage Ending Status
+Level Number: 4
+Invalid tag
+
+0 @I01@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Edwin Michael /Smith/
+Level Number: 1
+Tag: NAME
+
+2 SOUR @S1600@
+>>>>>>> Stashed changes
 Level Number: 2
 Invalid tag
 
@@ -23666,6 +23910,7 @@ Tag: SEX
 Level Number: 1
 Tag: BIRT
 
+<<<<<<< Updated upstream
 2 DATE 28 JUL 1795
 Level Number: 2
 Tag: DATE
@@ -23751,6 +23996,81 @@ Level Number: 2
 Invalid tag
 
 2 _MARNM Stevens
+=======
+2 DATE 24 MAY 1961
+Level Number: 2
+Tag: DATE
+
+2 PLAC San Jose, Santa Clara Co., CA
+Level Number: 2
+Invalid tag
+
+1 OCCU
+Level Number: 1
+Invalid tag
+
+2 PLAC Software Engineer
+Level Number: 2
+Invalid tag
+
+1 EDUC
+Level Number: 1
+Invalid tag
+
+2 DATE BET. 1979 - 1984
+Level Number: 2
+Tag: DATE
+
+2 PLAC UC Berkeley
+Level Number: 2
+Invalid tag
+
+1 _DEG
+Level Number: 1
+Invalid tag
+
+2 DATE 1984
+Level Number: 2
+Tag: DATE
+
+2 PLAC B.S.E.E.
+Level Number: 2
+Invalid tag
+
+1 FAMS @F01@
+Level Number: 1
+Tag: FAMS
+
+1 FAMC @F02@
+Level Number: 1
+Tag: FAMC
+
+0 @I02@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Alice Paula /Perkins/
+Level Number: 1
+Tag: NAME
+
+2 SOUR @S1600@
+Level Number: 2
+Invalid tag
+
+3 PAGE 1933 BIRTH: NV, Washoe Co., Sparks, Birth Certificate, Nevada State Department of Health, Vital Records, Sparks, NV, certificate #599632
+Level Number: 3
+Invalid tag
+
+3 DATA
+Level Number: 3
+Invalid tag
+
+4 TEXT Alice Paula Perkins born 22 Nov 1933, Sparks, Washoe Co, Nevada daughter of Paul Perkins and Stella Mason.
+Level Number: 4
+Invalid tag
+
+2 SOUR @S1601@
+>>>>>>> Stashed changes
 Level Number: 2
 Invalid tag
 
@@ -23762,6 +24082,7 @@ Tag: SEX
 Level Number: 1
 Tag: BIRT
 
+<<<<<<< Updated upstream
 2 DATE 1 JAN 1761
 Level Number: 2
 Tag: DATE
@@ -23831,6 +24152,33 @@ Level Number: 2
 Invalid tag
 
 1 SEX F
+=======
+2 DATE 22 NOV 1933
+Level Number: 2
+Tag: DATE
+
+2 PLAC Sparks, Washoe Co., NV
+Level Number: 2
+Invalid tag
+
+1 REFN 3
+Level Number: 1
+Invalid tag
+
+1 FAMS @F02@
+Level Number: 1
+Tag: FAMS
+
+0 @I03@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Martin /Smith/
+Level Number: 1
+Tag: NAME
+
+1 SEX M
+>>>>>>> Stashed changes
 Level Number: 1
 Tag: SEX
 
@@ -23838,6 +24186,7 @@ Tag: SEX
 Level Number: 1
 Tag: BIRT
 
+<<<<<<< Updated upstream
 2 DATE 31 FEB 1840
 Level Number: 2
 Tag: DATE
@@ -23874,6 +24223,44 @@ Invalid tag
 Level Number: 2
 Invalid tag
 
+=======
+2 DATE BET. 1794 - 1796
+Level Number: 2
+Tag: DATE
+
+2 PLAC Tommarp, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 DEAT
+Level Number: 1
+Tag: DEAT
+
+2 PLAC Sweden
+Level Number: 2
+Invalid tag
+
+1 REFN 366
+Level Number: 1
+Invalid tag
+
+1 FAMS @F03@
+Level Number: 1
+Tag: FAMS
+
+1 FAMC @F04@
+Level Number: 1
+Tag: FAMC
+
+0 @I04@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Elna /Jefferson/
+Level Number: 1
+Tag: NAME
+
+>>>>>>> Stashed changes
 1 SEX F
 Level Number: 1
 Tag: SEX
@@ -23882,6 +24269,7 @@ Tag: SEX
 Level Number: 1
 Tag: BIRT
 
+<<<<<<< Updated upstream
 2 DATE 15 MAY 1831
 Level Number: 2
 Tag: DATE
@@ -23958,6 +24346,52 @@ Invalid tag
 Level Number: 2
 Invalid tag
 
+=======
+2 DATE 14 SEP 1800
+Level Number: 2
+Tag: DATE
+
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 DEAT
+Level Number: 1
+Tag: DEAT
+
+2 PLAC Sweden
+Level Number: 2
+Invalid tag
+
+1 CHR
+Level Number: 1
+Invalid tag
+
+2 DATE 16 SEP 1800
+Level Number: 2
+Tag: DATE
+
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 REFN 367
+Level Number: 1
+Invalid tag
+
+1 FAMS @F03@
+Level Number: 1
+Tag: FAMS
+
+0 @I05@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Martin /Smith/
+Level Number: 1
+Tag: NAME
+
+>>>>>>> Stashed changes
 1 SEX M
 Level Number: 1
 Tag: SEX
@@ -23966,6 +24400,7 @@ Tag: SEX
 Level Number: 1
 Tag: BIRT
 
+<<<<<<< Updated upstream
 2 DATE 1 MAY 1868
 Level Number: 2
 Tag: DATE
@@ -24054,3 +24489,103 @@ Invalid tag
 Level Number: 0
 Tag: TRLR
 
+=======
+2 DATE 19 NOV 1830
+Level Number: 2
+Tag: DATE
+
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 DEAT
+Level Number: 1
+Tag: DEAT
+
+2 DATE BET. 1899 - 1905
+Level Number: 2
+Tag: DATE
+
+2 PLAC Sweden
+Level Number: 2
+Invalid tag
+
+1 BAPM
+Level Number: 1
+Invalid tag
+
+2 DATE 23 NOV 1830
+Level Number: 2
+Tag: DATE
+
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 REFN 371
+Level Number: 1
+Invalid tag
+
+1 FAMS @F05@
+Level Number: 1
+Tag: FAMS
+
+1 FAMC @F03@
+Level Number: 1
+Tag: FAMC
+
+1 NOTE @NI05@
+Level Number: 1
+Tag: NOTE
+
+0 @NI05@ NOTE
+Level Number: 0
+Tag: NOTE
+
+1 CONC
+Level Number: 1
+Invalid tag
+
+1 CONT BIOGRAPHY
+Level Number: 1
+Invalid tag
+
+1 CONT Martin was listed as being a Husman, (owning a house as opposed to a
+Level Number: 1
+Invalid tag
+
+1 CONT farm) in the house records of Gladsax.
+Level Number: 1
+Invalid tag
+
+0 @I06@ INDI
+Level Number: 0
+Tag: INDI
+
+1 NAME Kerstina /Hansdotter/
+Level Number: 1
+Tag: NAME
+
+1 SEX F
+Level Number: 1
+Tag: SEX
+
+1 BIRT
+Level Number: 1
+Tag: BIRT
+
+2 DATE 29 NOV 1832
+Level Number: 2
+Tag: DATE
+
+2 PLAC Smestorp, Kristianstad Lan, Sweden
+Level Number: 2
+Invalid tag
+
+1 DEAT
+Level Number: 1
+Tag: DEAT
+
+2 DATE BEF. 1908
+Level Number: 2
+>>>>>>> Stashed changes

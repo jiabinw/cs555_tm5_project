@@ -70,7 +70,7 @@ public class Main {
         int fam_ID = -1;
         IndividualInfo indiInfo = null;
         FamilyInfo famInfo = null;
-	
+        System.out.println("======================Wrong Dates in GedCom File - User Story 03===========================");
         while((line = br.readLine()) != null) {
             writeToFile(line);
             
@@ -194,7 +194,7 @@ public class Main {
             }
             
             if(!dateCode.isEmpty() && tag.toUpperCase().equals("DATE")) {
-           
+       
                 switch(dateCode)
                 {
                     case "BH" :
@@ -207,7 +207,7 @@ public class Main {
                     	}
                     	else
                     	{
-                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Birth date");
+                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Birth date ");
                     	indiInfo.setBirthDate(null);
                     	individualInfoObjMap.put(indi_ID, indiInfo);
                     	}
@@ -221,7 +221,7 @@ public class Main {
                     	}
                     	else
                     	{
-                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Death date");
+                    	System.out.println(individualInfoObjMap.get(indi_ID).getName()+" has an Invalid Death date- "+individualInfoObjMap.get(indi_ID).getDeathDate());
                     	indiInfo.setDeathDate(null);
                     	individualInfoObjMap.put(indi_ID, indiInfo);
                     	}
@@ -238,7 +238,7 @@ public class Main {
                     	{
                     		String Hus=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getHusband()).getName();
                     		String Wife=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getWife()).getName();
-                    		System.out.println(Hus+" and "+Wife+" have an Invalid Marriage date");
+                    		System.out.println(Hus+" and "+Wife+" have an Invalid Marriage date-" +familyInfoObjMap.get(fam_ID).getMarriageDate());
                     		famInfo.setMarriageDate(null);
                         	familyInfoObjMap.put(fam_ID, famInfo);
                     	}
@@ -255,7 +255,7 @@ public class Main {
                     	{
                     		String Hus=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getHusband()).getName();
                     		String Wife=individualInfoObjMap.get(familyInfoObjMap.get(fam_ID).getWife()).getName();
-                    		System.out.println(Hus+" and "+Wife+" have an Invalid Divorce date");
+                    		System.out.println(Hus+" and "+Wife+" have an Invalid Divorce date-" +familyInfoObjMap.get(fam_ID).getDivorceDate());
                     		famInfo.setDivorceDate(null);
                         	familyInfoObjMap.put(fam_ID, famInfo);
                     	}
@@ -263,6 +263,7 @@ public class Main {
                     default :
                         break;
                 }
+              
                 dateCode = "";
            
             }
@@ -274,6 +275,7 @@ public class Main {
         }
         
         br.close();
+        System.out.print("=========================================================");
     }
     
     private static void writeToFile(String line) throws IOException {

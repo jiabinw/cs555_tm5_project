@@ -92,7 +92,7 @@ public class HiteshFunction {
 
 
 public static void MarriageAfterDeath(HashMap individualInfo, HashMap familyInfo) {
-	System.out.println("=============Marriage After Death Cases============");
+	System.out.println("=============Marriage After Death Cases User Story 04============");
 	if(familyInfo != null && !familyInfo.isEmpty()) {
 		Object[] famKey = familyInfo.keySet().toArray();
         Arrays.sort(famKey);
@@ -108,10 +108,10 @@ public static void MarriageAfterDeath(HashMap individualInfo, HashMap familyInfo
         			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
         			
         			if(husbandInfo!=null && husbandInfo.getDeathDate()!=null && husbandInfo.getDeathDate().before(marriageDate))
-        				System.out.println(husbandInfo.getName() + " has an incorrect Marriage or Death Date.");
+        				System.out.println(husbandInfo.getName() + " has an incorrect Marriage or Death Date.\n Marriage Date: "+marriageDate+"\n Death Date: "+husbandInfo.getDeathDate());
         			
         			if(wifeInfo!=null && wifeInfo.getDeathDate()!=null && wifeInfo.getDeathDate().before(marriageDate))
-        				System.out.println(wifeInfo.getName() + " has an incorrect Marriage or Death Date.");
+        				System.out.println(wifeInfo.getName() + " has an incorrect Marriage or Death Date.\n Marriage Date: "+marriageDate+"\n Death Date: "+wifeInfo.getDeathDate());
         		}
         	}
         }

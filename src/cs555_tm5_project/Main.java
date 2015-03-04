@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import MemberFunction.HiteshFunction;
 import MemberFunction.JiabinFunction;
 import MemberFunction.SavioFunction;
+import MemberFunction.SiyuanFunction;
 
 /**
  * @author Savio Dcruz, Jiabin Wang, Hitesh Jain, Siyuan Zheng
@@ -312,7 +313,8 @@ public class Main {
         HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
         JiabinFunction.MarriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.ShowWhoHasSameBirthday(individualInfoObjMap);
-        
+        SiyuanFunction.wrongChildrenBirthday(individualInfoObjMap, familyInfoObjMap);
+        SiyuanFunction.wrongMarrigeSex(individualInfoObjMap, familyInfoObjMap);      
     }
     
     private static void populateMonthMap() {

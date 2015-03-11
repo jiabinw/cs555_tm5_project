@@ -316,7 +316,9 @@ public class Main {
         JiabinFunction.MarriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.ShowWhoHasSameBirthday(individualInfoObjMap);
         SiyuanFunction.wrongChildrenBirthday(individualInfoObjMap, familyInfoObjMap);
-        SiyuanFunction.wrongMarrigeSex(individualInfoObjMap, familyInfoObjMap);      
+        SiyuanFunction.wrongMarrigeSex(individualInfoObjMap, familyInfoObjMap);  
+        HiteshFunction.DivorceBeforeMarriage(individualInfoObjMap, familyInfoObjMap);
+        HiteshFunction.WhoHasLivedLongest(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

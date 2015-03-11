@@ -113,8 +113,8 @@ public class SiyuanFunction {
 			}
 		
 		
-	}
-<<<<<<< HEAD
+	
+
 	
 	public static void childrenAmountExceed(HashMap individualInfo, HashMap familyInfo, int limit)
 	{
@@ -210,6 +210,4 @@ public class SiyuanFunction {
 	
 	
 }
-=======
 
->>>>>>> origin/master

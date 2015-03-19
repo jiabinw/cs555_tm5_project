@@ -319,6 +319,8 @@ public class Main {
         SiyuanFunction.wrongMarrigeSex(individualInfoObjMap, familyInfoObjMap);  
         HiteshFunction.DivorceBeforeMarriage(individualInfoObjMap, familyInfoObjMap);
         HiteshFunction.WhoHasLivedLongest(individualInfoObjMap, familyInfoObjMap);
+        SavioFunction.displayListOfSingleIndividuals(individualInfoObjMap);
+        SavioFunction.displayNoOfChildrenInFamilies(familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

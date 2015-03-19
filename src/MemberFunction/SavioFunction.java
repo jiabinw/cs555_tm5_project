@@ -78,4 +78,50 @@ public class SavioFunction {
 		
 		System.out.println("\n***** End of Output for US02 *****\n");
 	}
+	
+	public static void displayListOfSingleIndividuals(HashMap individualInfo) {
+		System.out.println("***** Output for US09 *****\n");
+		System.out.println("***** List of Single Individuals *****");
+		
+		if(individualInfo != null && !individualInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	if(indiInfo.getSpouseOfFamPtr()==0)
+            		System.out.println(indiInfo.getName());
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US09 *****\n");
+	}
+	
+	public static void displayNoOfChildrenInFamilies(HashMap familyInfo) {
+		System.out.println("***** Output for US10 *****\n");
+		System.out.println("***** No. of Children in each Family *****");
+		
+		boolean isFirstRecord = true;
+		
+		if(familyInfo != null && !familyInfo.isEmpty()) {
+			Object[] famKey = familyInfo.keySet().toArray();
+	        Arrays.sort(famKey);
+	        
+	        for(Object retval: famKey) {
+            	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
+            	String id = Global.rebuildIdentifier(retval.toString(), 'F');
+            	
+            	if(isFirstRecord)
+    	        	isFirstRecord = false;
+    	        else
+    	        	System.out.println("");
+            	
+            	System.out.println("Family: " + id);
+            	System.out.println("No. of Children: " + famInfo.getChildren().size());
+            }
+	    }
+		
+		System.out.println("\n***** End of Output for US09 *****\n");
+	}
 }

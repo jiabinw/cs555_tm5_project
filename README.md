@@ -1,6 +1,6 @@
 The 5th team project for CS555
 
-
+(A analyzer for GEDCOM file) written in Java
 
 The team member contact infomation:
 

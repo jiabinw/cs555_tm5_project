@@ -313,14 +313,16 @@ public class Main {
     	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
         SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
         HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
-        JiabinFunction.MarriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
-        JiabinFunction.ShowWhoHasSameBirthday(individualInfoObjMap);
+        JiabinFunction.marriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
+        JiabinFunction.showWhoHasSameBirthday(individualInfoObjMap);
         SiyuanFunction.wrongChildrenBirthday(individualInfoObjMap, familyInfoObjMap);
         SiyuanFunction.wrongMarrigeSex(individualInfoObjMap, familyInfoObjMap);  
         HiteshFunction.DivorceBeforeMarriage(individualInfoObjMap, familyInfoObjMap);
         HiteshFunction.WhoHasLivedLongest(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayListOfSingleIndividuals(individualInfoObjMap);
         SavioFunction.displayNoOfChildrenInFamilies(familyInfoObjMap);
+        JiabinFunction.marriageToSilbling(familyInfoObjMap, individualInfoObjMap);
+        JiabinFunction.showBigamy(familyInfoObjMap, individualInfoObjMap);
     }
     
     private static void populateMonthMap() {

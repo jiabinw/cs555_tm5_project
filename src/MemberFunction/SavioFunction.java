@@ -90,7 +90,7 @@ public class SavioFunction {
             for(Object retval: indiKey) {
             	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
             	
-            	if(indiInfo.getSpouseOfFamPtr()==0)
+            	if(indiInfo.getSpouseOfFamPtr().size() == 0)
             		System.out.println(indiInfo.getName());
             }
 		}

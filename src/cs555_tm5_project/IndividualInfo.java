@@ -1,5 +1,6 @@
 package cs555_tm5_project;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -13,7 +14,7 @@ public class IndividualInfo {
     private Date birthDate = null;
     private Date deathDate = null;
     private int childOfFamPtr;
-    private int spouseOfFamPtr;
+    private ArrayList<Integer> spouseOfFamPtr = new ArrayList<Integer>();
 
     public String getName() {
         return name;
@@ -55,11 +56,11 @@ public class IndividualInfo {
         this.childOfFamPtr = childOfFamPtr;
     }
 
-    public int getSpouseOfFamPtr() {
+    public ArrayList<Integer> getSpouseOfFamPtr() {
         return spouseOfFamPtr;
     }
 
     public void setSpouseOfFamPtr(int spouseOfFamPtr) {
-        this.spouseOfFamPtr = spouseOfFamPtr;
+        this.spouseOfFamPtr.add(spouseOfFamPtr);
     }
 }

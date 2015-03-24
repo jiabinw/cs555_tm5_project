@@ -1,6 +1,5 @@
 package Helper;
 
-//import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,20 +7,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-//import java.util.Locale;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import cs555_tm5_project.FamilyInfo;
 import cs555_tm5_project.IndividualInfo;
-
-//import java.util.Arrays;
-//author Hitesh
 
 public class Global {
 	
@@ -57,7 +49,6 @@ public class Global {
 		   return null;
 		}
 	}
-
 
 	public static boolean IsDateValid(Date YourDate)//To Check if it is a valid calendar date 
 	{
@@ -110,7 +101,7 @@ public class Global {
 	  }
    }
 	
-   public static int AgeAtSpecificTime(Date birth, Date specificTime){
+    public static int AgeAtSpecificTime(Date birth, Date specificTime){
 	   
 	   if(birth != null && specificTime != null ){	   
 		   if(specificTime.after(birth)){
@@ -122,8 +113,9 @@ public class Global {
 		   }
 	   }   
 	   return -1;
-   }	
-   public static int getAge(Date dateOfBirth) {
+    }	
+
+    public static int getAge(Date dateOfBirth) {
 
 	    Calendar today = Calendar.getInstance();
 	    Calendar birthDate = Calendar.getInstance();
@@ -151,22 +143,22 @@ public class Global {
 	    return age;
 	}
 
- public  static <K,V extends Comparable<? super V>> List<Entry<K, V>> MapEntriesSortedByValuesDesc(Map<K,V> map) {
-
-List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
-
-Collections.sort(sortedEntries, 
-   new Comparator<Entry<K,V>>() {
-       @Override
-       public int compare(Entry<K,V> e1, Entry<K,V> e2) {
-           return e2.getValue().compareTo(e1.getValue());
-       }
-   }
-);
-
-return sortedEntries;
-}
-	public static String rebuildIdentifier(String id, char type) {
+    public  static <K,V extends Comparable<? super V>> List<Entry<K, V>> MapEntriesSortedByValuesDesc(Map<K,V> map) {
+		List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
+		
+		Collections.sort(sortedEntries, 
+		   new Comparator<Entry<K,V>>() {
+		       @Override
+		       public int compare(Entry<K,V> e1, Entry<K,V> e2) {
+		           return e2.getValue().compareTo(e1.getValue());
+		       }
+		   }
+		);
+		
+		return sortedEntries;
+	}
+	
+    public static String rebuildIdentifier(String id, char type) {
 		String formedID = "";
 		
 		if(type=='I')
@@ -176,5 +168,40 @@ return sortedEntries;
 		
 		return formedID;
 	}
+	
+	public static String rebuildIdentifier(int id, char type) {
+		String formedID = "";
+		
+		if(type=='I')
+			formedID =  "@I" + id + "@";
+		else if(type=='F')
+			formedID =  "@F" + id + "@";
+		
+		return formedID;
+	}
+	
+	// just enter title, nothing else
+	public static void printTitle(String string){
+			
+			StringBuilder title = new StringBuilder();
+			String line = "-----------------------------------";
+			int lineLength = line.length();
+			int stringLength = string.length();
+			int halfLength = lineLength/2 - stringLength/2;
+			for(int i = 0; i < halfLength; i++){
+				title.append("-");
+			}
+			title.append(string);
+			int leftDotNum = lineLength - title.length();
+			for(int i = 0; i < leftDotNum; i++){
+				title.append("-");
+			}
+			
+			System.out.println("");
+			System.out.println(line);
+			System.out.println(title.toString());		
+			System.out.println(line);		
+	}
+	
 }
 

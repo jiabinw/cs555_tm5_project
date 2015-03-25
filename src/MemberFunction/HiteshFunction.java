@@ -127,7 +127,8 @@ public static void MarriageAfterDeath(HashMap individualInfo, HashMap familyInfo
 	System.out.println("===================================================");
 }
 public static void DivorceBeforeMarriage(HashMap individualInfo, HashMap familyInfo) {
-	System.out.println("=============Divorce Before Marriage  User Story 36============");
+	//System.out.println("=============Divorce Before Marriage  User Story 36============");
+	Global.printTitle("Divorce Before Marriage  User Story 36");
 	if(familyInfo != null && !familyInfo.isEmpty()) {
 		Object[] famKey = familyInfo.keySet().toArray();
         Arrays.sort(famKey);
@@ -150,11 +151,13 @@ public static void DivorceBeforeMarriage(HashMap individualInfo, HashMap familyI
         	}
         }
 	}
-	System.out.println("=======================================================================");
+	System.out.println();
+	//System.out.println("=======================================================================");
 }
 public static void WhoHasLivedLongest(HashMap individualInfo, HashMap familyInfo)
 {
-	System.out.println("=============Person Who have lived the longest User Story 43============");
+	//System.out.println("=============Person Who have lived the longest User Story 43============");
+Global.printTitle("Person Who have lived the longest User Story 43");
 	Map<String, Integer> map = new HashMap<String, Integer>();
 	if(individualInfo != null && !individualInfo.isEmpty()) {
 		Object[] indiKey = individualInfo.keySet().toArray();
@@ -187,7 +190,7 @@ public static void WhoHasLivedLongest(HashMap individualInfo, HashMap familyInfo
 	}
 
 
-	System.out.println("==============================================================================");
+	System.out.println();
 }
 }
 

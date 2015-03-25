@@ -157,7 +157,7 @@ public static void DivorceBeforeMarriage(HashMap individualInfo, HashMap familyI
 public static void WhoHasLivedLongest(HashMap individualInfo, HashMap familyInfo)
 {
 	//System.out.println("=============Person Who have lived the longest User Story 43============");
-Global.printTitle("Person Who have lived the longest User Story 43");
+Global.printTitle("Person(s) Who have lived the longest User Story 43");
 	Map<String, Integer> map = new HashMap<String, Integer>();
 	if(individualInfo != null && !individualInfo.isEmpty()) {
 		Object[] indiKey = individualInfo.keySet().toArray();

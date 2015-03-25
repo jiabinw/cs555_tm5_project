@@ -147,12 +147,13 @@ public class SiyuanFunction {
 									+" with husband @I"+famInfo.getHusband()+" ("+ husband.getName() +")"
 									+" and wife @I"+famInfo.getWife() +" ("+ wife.getName()+")"
 									+" has more than " + limit +" children.";
+							System.out.println(result);
 						}
 					}
 				}
 			}
 		}
-		System.out.println(result);
+		
 
 		
 		System.out.println("-----------------------------");

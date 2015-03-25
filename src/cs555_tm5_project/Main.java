@@ -323,6 +323,8 @@ public class Main {
         SavioFunction.displayNoOfChildrenInFamilies(familyInfoObjMap);
         JiabinFunction.marriageToSilbling(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.showBigamy(familyInfoObjMap, individualInfoObjMap);
+        SiyuanFunction.childrenAmountExceed(individualInfoObjMap, familyInfoObjMap, 1);
+        SiyuanFunction.genderRatio(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

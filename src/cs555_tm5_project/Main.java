@@ -309,7 +309,7 @@ public class Main {
 	    return utilDate;
 	}
     
-    private static void UserStoryMethods() {
+    private static void UserStoryMethods(){
     	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
         SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
         HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
@@ -325,6 +325,8 @@ public class Main {
         JiabinFunction.showBigamy(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.childrenAmountExceed(individualInfoObjMap, familyInfoObjMap, 1);
         SiyuanFunction.genderRatio(individualInfoObjMap, familyInfoObjMap);
+        HiteshFunction.MarriageAniversaryInNext30Days(individualInfoObjMap, familyInfoObjMap);
+        HiteshFunction.WeddingThatOccuredInLast30Days(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TimeZone;
 
 import Helper.Global;
 import cs555_tm5_project.FamilyInfo;
@@ -192,5 +194,81 @@ Global.printTitle("Person(s) Who have lived the longest User Story 12");
 
 	System.out.println();
 }
+public static void WeddingThatOccuredInLast30Days(HashMap individualInfo, HashMap familyInfo)
+{
+	Global.printTitle("Marriage in Past 30 Days ");
+	if(familyInfo != null && !familyInfo.isEmpty()) {
+		Object[] famKey = familyInfo.keySet().toArray();
+        Arrays.sort(famKey);
+        
+        for(Object retval: famKey) {
+        	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
+        	
+        	if(famInfo.getMarriageDate()!=null) {
+        		Date marriageDate = famInfo.getMarriageDate();
+        	
+        	
+        			if(datebetweenRange(marriageDate,-30))
+        			{
+        				if(famInfo.getHusband()!=0 && famInfo.getWife()!=0) {
+        					IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+        					IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+        			
+        				System.out.println(wifeInfo.getName()+" and "+husbandInfo.getName()+  " had marriage in Last 30 days ("+famInfo.getMarriageDate()+")");
+        				}
+        		}
+        	}
+        }
+	}
+	System.out.println();
+	//System.out.println("=======================================================================");
 }
+public static void MarriageAniversaryInNext30Days(HashMap individualInfo, HashMap familyInfo) 
+{
+	Global.printTitle("Marriage aniversary in next 30 Days ");
+	if(familyInfo != null && !familyInfo.isEmpty()) {
+		Object[] famKey = familyInfo.keySet().toArray();
+        Arrays.sort(famKey);
+        
+        for(Object retval: famKey) {
+        	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
+        	
+        	if(famInfo.getMarriageDate()!=null) {
+        		Date marriageDate = famInfo.getMarriageDate();
+        	
+        	
+        			if(Global.CalculateAniversaryDaysLeft(marriageDate)<=30)
+        		
+        		{
+        			
+        				if(famInfo.getHusband()!=0 && famInfo.getWife()!=0) {
+        					IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+        					IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+        			
+        				System.out.println(wifeInfo.getName()+" and "+husbandInfo.getName()+  " has marriage aniversary in next 30 days ("+famInfo.getMarriageDate()+")");
+        			
+        				}
+        		}
+        	}
+        }
+	}
+	System.out.println();
+	//System.out.println("=======================================================================");
+}
+public static boolean datebetweenRange(Date d,int range)
+{
+	Calendar c = Calendar.getInstance();
+	c.setTime(new Date()); // Now use today date.
+	c.add(Calendar.DATE, range); // Adding 5 days
+	Date current=new Date();//current
+	Date Min=c.getTime();//5 days ago
+	if(d.before(current) && d.after(Min))
+		return true;
+	else
+	return false;
+}
+
+}
+
+
 

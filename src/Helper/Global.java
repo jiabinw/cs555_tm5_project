@@ -203,5 +203,65 @@ public class Global {
 			System.out.println(line);		
 	}
 	
+	public static int CalculateAniversaryDaysLeft(Date d)
+	{
+		int daysLeft=0;
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		String dc=sdf.format(d);
+		 Calendar Current = Calendar.getInstance();
+		 int  currentDay,currentMonth,reqDay,reqMonth;
+		
+		  String delimeter = "/";
+		  String DateArr[] = dc.split(delimeter,3); // d="03/11/1990";
+		  String currentDate=sdf.format(new Date());
+		  String CurrDateArr[]=currentDate.split(delimeter,3);
+		  
+	      currentMonth = Integer.parseInt(CurrDateArr[0]);
+	      currentDay = Integer.parseInt(CurrDateArr[1]);
+	      reqMonth=Integer.parseInt(DateArr[0]);
+	      reqDay=Integer.parseInt(DateArr[1]);
+	      int whatday=todayIsWhat(currentMonth, currentDay);
+	      //System.out.println(whatday);
+	      int totalDays = whatMonth(reqMonth);
+	      totalDays = totalDays + reqDay;
+	      if(whatday > totalDays){
+				 daysLeft = (365 - whatday) + totalDays;
+			
+				
+			}else if(whatday < totalDays){
+				 daysLeft = totalDays - whatday;
+			
+				
+			}
+	     // System.out.println("-"+daysLeft);
+	      return daysLeft;
+	}
+	
+	public static int whatMonth(int numMonth){
+		int totalDays = 0;
+		
+		for(int i = 1; i < numMonth; i++){
+			
+			if(i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12){
+				int days = 31;
+				totalDays = totalDays + days;
+				
+			}else if(i == 4 || i == 6 || i == 9 || i == 11){
+				int days = 30;
+				totalDays = totalDays + days;
+				
+			}else{
+				int days = 28;
+				totalDays = totalDays + days;
+			}
+		}
+		return totalDays;
+	}
+	
+	public static int todayIsWhat(int numMonth,int numDay){
+		int totalDays = whatMonth(numMonth);
+		totalDays = totalDays + numDay;
+		return totalDays;
+	}
 }
 

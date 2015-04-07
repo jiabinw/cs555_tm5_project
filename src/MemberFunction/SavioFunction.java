@@ -2,6 +2,7 @@ package MemberFunction;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -123,5 +124,103 @@ public class SavioFunction {
 	    }
 		
 		System.out.println("\n***** End of Output for US10 *****\n");
+	}
+	
+	public static void displayUpcomingBirthdays(HashMap individualInfo, int noOFDays) {
+		System.out.println("***** Output for US35 *****\n");
+		System.out.println("***** List of Upcoming Birthdays in the next "+ noOFDays +" days *****");
+		
+		boolean isFirstRecord = true;
+		
+		if(individualInfo != null && !individualInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	if(indiInfo.getBirthDate()!= null) {
+	            	Calendar currentDate = Calendar.getInstance();
+	            	
+	            	Calendar futureDate = Calendar.getInstance();
+	            	futureDate.add(Calendar.DATE, noOFDays);
+	            	
+	            	Calendar birthDate = Calendar.getInstance();
+	            	birthDate.setTime(indiInfo.getBirthDate());
+	            	
+	            	if(birthDate.get(Calendar.MONTH) < currentDate.get(Calendar.MONTH)) {
+	            		birthDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR)+1);
+	            	} else if(birthDate.get(Calendar.MONTH) > currentDate.get(Calendar.MONTH)) {
+	            		birthDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR));
+	            	} else {
+	            		if(birthDate.get(Calendar.DATE) < currentDate.get(Calendar.DATE))
+	            			birthDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR)+1);
+	            		else
+	            			birthDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR));
+	            	}
+	            	
+	            	if(birthDate.compareTo(currentDate) >= 0 && birthDate.compareTo(futureDate) <=0) {
+	            		if(isFirstRecord)
+	        	        	isFirstRecord = false;
+	        	        else
+	        	        	System.out.println("");
+	            		
+	            		System.out.println("Name: " + indiInfo.getName());
+	                	System.out.println("Birth Date: " + new SimpleDateFormat("dd-MMM-YYYY").format(indiInfo.getBirthDate()));
+	            	}
+            	}
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US35 *****\n");
+	}
+	
+	public static void displayUpcomingDeathAnniversaries(HashMap individualInfo, int noOFDays) {
+		System.out.println("***** Output for US37 *****\n");
+		System.out.println("***** List of Upcoming Death Anniversaries in the next "+ noOFDays +" days *****");
+		
+		boolean isFirstRecord = true;
+		
+		if(individualInfo != null && !individualInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	if(indiInfo.getDeathDate()!= null) {
+	            	Calendar currentDate = Calendar.getInstance();
+	            	
+	            	Calendar futureDate = Calendar.getInstance();
+	            	futureDate.add(Calendar.DATE, noOFDays);
+	            	
+	            	Calendar deathDate = Calendar.getInstance();
+	            	deathDate.setTime(indiInfo.getDeathDate());
+	            	
+	            	if(deathDate.get(Calendar.MONTH) < currentDate.get(Calendar.MONTH)) {
+	            		deathDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR)+1);
+	            	} else if(deathDate.get(Calendar.MONTH) > currentDate.get(Calendar.MONTH)) {
+	            		deathDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR));
+	            	} else {
+	            		if(deathDate.get(Calendar.DATE) < currentDate.get(Calendar.DATE))
+	            			deathDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR)+1);
+	            		else
+	            			deathDate.set(Calendar.YEAR, currentDate.get(Calendar.YEAR));
+	            	}
+	            	
+	            	if(deathDate.compareTo(currentDate) >= 0 && deathDate.compareTo(futureDate) <=0) {
+	            		if(isFirstRecord)
+	        	        	isFirstRecord = false;
+	        	        else
+	        	        	System.out.println("");
+	            		
+	            		System.out.println("Name: " + indiInfo.getName());
+	                	System.out.println("Death Date: " + new SimpleDateFormat("dd-MMM-YYYY").format(indiInfo.getDeathDate()));
+	            	}
+            	}
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US37 *****\n");
 	}
 }

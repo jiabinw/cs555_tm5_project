@@ -196,8 +196,54 @@ public class JiabinFunction {
 		System.out.println("");
 		
 		return bigamyPerson;
-	}		
-
+	}	
+	
+	//PeopleWhoseParentsGetDivorced 
+	public static HashMap<Integer, IndividualInfo> showPeopleWhoseParentsGetDivorced(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		HashMap<Integer, IndividualInfo> result = new HashMap<Integer, IndividualInfo>();
+		for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+			IndividualInfo indi = entry.getValue();
+			FamilyInfo indiParentFamily = familyInfoObjMap.get(indi.getChildOfFamPtr());
+			if(indiParentFamily != null){
+				if(indiParentFamily.getDivorceDate() != null){
+					result.put(entry.getKey(), entry.getValue());
+				}
+			}
+		}
+		
+		Global.printTitle("PeopleWhoseParentsGetDivorced");
+		System.out.println("The below people's parents get divorced: ");
+		for(Map.Entry<Integer, IndividualInfo> entry : result.entrySet()){
+			int id = entry.getKey();
+			IndividualInfo indi = entry.getValue();
+			System.out.println("Person:"+Global.rebuildIdentifier(id, 'I')+" "+indi.getName()+"  His/Her Family:"+Global.rebuildIdentifier(indi.getChildOfFamPtr(), 'F'));
+		}
+		return result;
+	}
+	//PeopleWhoDieAtYoungAge
+	public static HashMap<Integer, IndividualInfo> showPeopleWhoDieAtYoungAge(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap) throws Exception{
+		HashMap<Integer, IndividualInfo> result = new HashMap<Integer, IndividualInfo>();
+		for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+			IndividualInfo indi = entry.getValue();
+			int youngAgeSetting = 3;
+			
+			Date death;
+			Date birth;
+			if((death = indi.getDeathDate()) != null && (birth = indi.getBirthDate()) != null && death.after(birth)){
+				if(indi.getLivingPeriod() <= youngAgeSetting){
+					result.put(entry.getKey(), entry.getValue());
+				}
+			}
+		}
+		
+		Global.printTitle("PeopleWhoDieAtYoungAge");
+		System.out.println("The below people die at or before 3 years old:");
+		for(Map.Entry<Integer, IndividualInfo> entry : result.entrySet()){
+			IndividualInfo indi = entry.getValue();
+			System.out.println(Global.rebuildIdentifier(entry.getKey(), 'I')+" "+ indi.getName() + " died at " + indi.getLivingPeriod());
+		}
+		return result;
+	}
 }
 
 

@@ -325,6 +325,8 @@ public class Main {
         JiabinFunction.showBigamy(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.childrenAmountExceed(individualInfoObjMap, familyInfoObjMap, 1);
         SiyuanFunction.genderRatio(individualInfoObjMap, familyInfoObjMap);
+        SavioFunction.displayUpcomingBirthdays(individualInfoObjMap, 30);
+        SavioFunction.displayUpcomingDeathAnniversaries(individualInfoObjMap, 60);
         HiteshFunction.MarriageAniversaryInNext30Days(individualInfoObjMap, familyInfoObjMap);
         HiteshFunction.WeddingThatOccuredInLast30Days(individualInfoObjMap, familyInfoObjMap);
     }

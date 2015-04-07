@@ -208,7 +208,92 @@ public class SiyuanFunction {
 		System.out.println("-----------------------------\n");
 	}
 	
+	@SuppressWarnings("deprecation")
+	public static void youngMom(HashMap<Integer, FamilyInfo> familyInfoObjMap,
+			HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		Global.printTitle("US 25: Show all moms whoes age are too young");
+		
+		if(familyInfoObjMap != null && !familyInfoObjMap.isEmpty()) {
+			Object[] famKey = familyInfoObjMap.keySet().toArray();
+	        Arrays.sort(famKey);
+	        
+	        for(Object retval: famKey) {
+	        	FamilyInfo famInfo = (FamilyInfo)familyInfoObjMap.get(retval);
+	        	if(famInfo.getWife()!=0 && famInfo.getChildren()!=null){
+	        		IndividualInfo mom = individualInfoObjMap.get(famInfo.getWife());
+	        		if(mom.getBirthDate()==null){
+	        			System.out.println("Error: No birthday for mom"+ mom.getName());
+	        			continue;
+	        		}
+        			Date momBirth = mom.getBirthDate();
+        			Date momBirthTmp = (Date) momBirth.clone();
+        			momBirthTmp.setYear((momBirthTmp.getYear()+1970));
+        	       			
+	        		ArrayList<Integer> childrenInfo = famInfo.getChildren();
+	        		for (Object ret: childrenInfo){
+	        			IndividualInfo child = individualInfoObjMap.get(ret);
+	        			if(child.getBirthDate()==null){
+	        				System.out.println("Error: No birthday for child: "+ child.getName());
+	        				continue;
+	        			}
+	        			Date childBirth = child.getBirthDate();
+	        			Date childBirthTmp = (Date) childBirth.clone();
+	        			childBirthTmp.setYear((childBirthTmp.getYear()+1970));
+	        			long diff = childBirthTmp.getTime()/(1000*60*60*24)-momBirthTmp.getTime()/(1000*60*60*24);
+	        			long diffYear=diff/365;
+	        			if (diffYear<10){
+	        				System.out.println("Age difference between mom "+mom.getName()+" and child "+
+	        						child.getName()+" is less than 10.");
+	        			}
+	        		}
+	        	}
+	        }
+		}
+	}
+	        	
+
 	
-	
+	public static void oldMom(HashMap<Integer, FamilyInfo> familyInfoObjMap,
+			HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		Global.printTitle("US 26: Show all moms whoes age are too old");
+		if(familyInfoObjMap != null && !familyInfoObjMap.isEmpty()) {
+			Object[] famKey = familyInfoObjMap.keySet().toArray();
+	        Arrays.sort(famKey);
+	        
+	        for(Object retval: famKey) {
+	        	FamilyInfo famInfo = (FamilyInfo)familyInfoObjMap.get(retval);
+	        	if(famInfo.getWife()!=0 && famInfo.getChildren()!=null){
+	        		IndividualInfo mom = individualInfoObjMap.get(famInfo.getWife());
+	        		if(mom.getBirthDate()==null){
+	        			System.out.println("Error: No birthday for mom"+ mom.getName());
+	        			continue;
+	        		}
+        			Date momBirth = mom.getBirthDate();
+        			Date momBirthTmp = (Date) momBirth.clone();
+        			momBirthTmp.setYear((momBirthTmp.getYear()+1970));
+        	       			
+	        		ArrayList<Integer> childrenInfo = famInfo.getChildren();
+	        		for (Object ret: childrenInfo){
+	        			IndividualInfo child = individualInfoObjMap.get(ret);
+	        			if(child.getBirthDate()==null){
+	        				System.out.println("Error: No birthday for child: "+ child.getName());
+	        				continue;
+	        			}
+	        			Date childBirth = child.getBirthDate();
+	        			Date childBirthTmp = (Date) childBirth.clone();
+	        			childBirthTmp.setYear((childBirthTmp.getYear()+1970));
+	        			long diff = childBirthTmp.getTime()/(1000*60*60*24)-momBirthTmp.getTime()/(1000*60*60*24);
+	        			long diffYear=diff/365;
+	        			if (diffYear>60){
+	        				System.out.println("Age difference between mom "+mom.getName()+" and child "+
+	        						child.getName()+" is larger than 60.");
+	        			}
+	        		}
+	        	}
+	        }
+		}
+	}
 }
+	
+
 

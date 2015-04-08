@@ -3,6 +3,8 @@ package cs555_tm5_project;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Helper.Global;
+
 
 /**
  *
@@ -63,4 +65,13 @@ public class IndividualInfo {
     public void setSpouseOfFamPtr(int spouseOfFamPtr) {
         this.spouseOfFamPtr.add(spouseOfFamPtr);
     }
+    
+    public int getLivingPeriod() throws Exception{
+    	if(birthDate != null && deathDate != null){
+    		return Global.AgeAtSpecificTime(birthDate, deathDate);
+    	}else{
+    		throw new Exception("birthDate or deathDate is not set.");
+    	}
+    }
+    
 }

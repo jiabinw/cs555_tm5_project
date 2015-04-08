@@ -329,6 +329,10 @@ public class Main {
         SavioFunction.displayUpcomingDeathAnniversaries(individualInfoObjMap, 60);
         HiteshFunction.MarriageAniversaryInNext30Days(individualInfoObjMap, familyInfoObjMap);
         HiteshFunction.WeddingThatOccuredInLast30Days(individualInfoObjMap, familyInfoObjMap);
+        JiabinFunction.showPeopleWhoDieAtYoungAge(familyInfoObjMap, individualInfoObjMap);
+        JiabinFunction.showPeopleWhoseParentsGetDivorced(familyInfoObjMap, individualInfoObjMap);
+        SiyuanFunction.youngMom(familyInfoObjMap, individualInfoObjMap);
+        SiyuanFunction.oldMom(familyInfoObjMap, individualInfoObjMap);
     }
     
     private static void populateMonthMap() {

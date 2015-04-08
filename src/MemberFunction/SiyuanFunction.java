@@ -222,7 +222,7 @@ public class SiyuanFunction {
 	        	if(famInfo.getWife()!=0 && famInfo.getChildren()!=null){
 	        		IndividualInfo mom = individualInfoObjMap.get(famInfo.getWife());
 	        		if(mom.getBirthDate()==null){
-	        			System.out.println("Error: No birthday for mom"+ mom.getName());
+//	        			System.out.println("Error: No birthday for mom"+ mom.getName());
 	        			continue;
 	        		}
         			Date momBirth = mom.getBirthDate();
@@ -233,7 +233,7 @@ public class SiyuanFunction {
 	        		for (Object ret: childrenInfo){
 	        			IndividualInfo child = individualInfoObjMap.get(ret);
 	        			if(child.getBirthDate()==null){
-	        				System.out.println("Error: No birthday for child: "+ child.getName());
+//	        				System.out.println("Error: No birthday for child: "+ child.getName());
 	        				continue;
 	        			}
 	        			Date childBirth = child.getBirthDate();
@@ -264,8 +264,9 @@ public class SiyuanFunction {
 	        	FamilyInfo famInfo = (FamilyInfo)familyInfoObjMap.get(retval);
 	        	if(famInfo.getWife()!=0 && famInfo.getChildren()!=null){
 	        		IndividualInfo mom = individualInfoObjMap.get(famInfo.getWife());
+	        		
 	        		if(mom.getBirthDate()==null){
-	        			System.out.println("Error: No birthday for mom"+ mom.getName());
+//	        			System.out.println("Error: No birthday for mom"+ mom.getName());
 	        			continue;
 	        		}
         			Date momBirth = mom.getBirthDate();
@@ -275,16 +276,17 @@ public class SiyuanFunction {
 	        		ArrayList<Integer> childrenInfo = famInfo.getChildren();
 	        		for (Object ret: childrenInfo){
 	        			IndividualInfo child = individualInfoObjMap.get(ret);
+	        			
 	        			if(child.getBirthDate()==null){
-	        				System.out.println("Error: No birthday for child: "+ child.getName());
+//	        				System.out.println("Error: No birthday for child: "+ child.getName());
 	        				continue;
 	        			}
 	        			Date childBirth = child.getBirthDate();
 	        			Date childBirthTmp = (Date) childBirth.clone();
 	        			childBirthTmp.setYear((childBirthTmp.getYear()+1970));
-	        			long diff = childBirthTmp.getTime()/(1000*60*60*24)-momBirthTmp.getTime()/(1000*60*60*24);
-	        			long diffYear=diff/365;
-	        			if (diffYear>60){
+	        			float diff = childBirthTmp.getTime()/(1000*60*60*24)-momBirthTmp.getTime()/(1000*60*60*24);
+	        			float diffYear=diff/365;
+	        			if (diffYear>60.0){
 	        				System.out.println("Age difference between mom "+mom.getName()+" and child "+
 	        						child.getName()+" is larger than 60.");
 	        			}

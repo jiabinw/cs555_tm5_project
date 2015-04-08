@@ -221,7 +221,7 @@ public class JiabinFunction {
 		return result;
 	}
 	//PeopleWhoDieAtYoungAge
-	public static HashMap<Integer, IndividualInfo> showPeopleWhoDieAtYoungAge(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap) throws Exception{
+	public static HashMap<Integer, IndividualInfo> showPeopleWhoDieAtYoungAge(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap) {
 		HashMap<Integer, IndividualInfo> result = new HashMap<Integer, IndividualInfo>();
 		for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
 			IndividualInfo indi = entry.getValue();
@@ -230,7 +230,7 @@ public class JiabinFunction {
 			Date death;
 			Date birth;
 			if((death = indi.getDeathDate()) != null && (birth = indi.getBirthDate()) != null && death.after(birth)){
-				if(indi.getLivingPeriod() <= youngAgeSetting){
+				if(getLivingPeriod(indi) <= youngAgeSetting){
 					result.put(entry.getKey(), entry.getValue());
 				}
 			}
@@ -240,10 +240,18 @@ public class JiabinFunction {
 		System.out.println("The below people die at or before 3 years old:");
 		for(Map.Entry<Integer, IndividualInfo> entry : result.entrySet()){
 			IndividualInfo indi = entry.getValue();
-			System.out.println(Global.rebuildIdentifier(entry.getKey(), 'I')+" "+ indi.getName() + " died at " + indi.getLivingPeriod());
+			System.out.println(Global.rebuildIdentifier(entry.getKey(), 'I')+" "+ indi.getName() + " died at " + getLivingPeriod(indi));
 		}
 		return result;
 	}
+	
+	 public static int getLivingPeriod(IndividualInfo indi) {
+	    	if(indi.getBirthDate() != null && indi.getDeathDate() != null){
+	    		return Global.AgeAtSpecificTime(indi.getBirthDate(), indi.getDeathDate());
+	    	} else {
+	    		return 0;
+	    	}
+	    }
 }
 
 

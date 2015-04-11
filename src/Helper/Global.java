@@ -124,7 +124,7 @@ public class Global {
 
 	    birthDate.setTime(dateOfBirth);
 	    if (birthDate.after(today)) {
-	        throw new IllegalArgumentException("Can't be born in the future");
+	        //throw new IllegalArgumentException("Can't be born in the future");
 	    }
 
 	    age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);

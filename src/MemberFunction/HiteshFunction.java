@@ -20,87 +20,6 @@ import cs555_tm5_project.FamilyInfo;
 import cs555_tm5_project.IndividualInfo;
 
 public class HiteshFunction {
-
-//public static void CheckIsDateValid(HashMap individualInfo, HashMap familyInfo)
-//{
-//	if(familyInfo != null && !familyInfo.isEmpty()) {
-//		Object[] famKey = familyInfo.keySet().toArray();
-//        Arrays.sort(famKey);
-//        
-//        for(Object retval: famKey) {
-//        	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
-//        	
-//        	if(famInfo.getMarriageDate()!=null) {
-//        		Date marriageDate = famInfo.getMarriageDate();
-//        		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-//        		    Date utilDate = null;
-//        		    
-//        		    try {
-//        		    	formatter.setLenient(false);
-//        				utilDate = formatter.parse(marriageDate.toString());
-//        			} catch (ParseException e) {
-//        				//e.printStackTrace();
-//
-//                		if(famInfo.getHusband()!=0 && famInfo.getWife()!=0) {
-//                			IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
-//                			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
-//                			System.out.println(husbandInfo.getName()+" - "+wifeInfo.getName()+" have an Invalid Marriage Date");}
-//        				
-//        				
-//        			}
-//        		
-//        		}
-//        	}
-//        }
-//	if(individualInfo != null && !individualInfo.isEmpty()) {
-//		Object[] indiKey = individualInfo.keySet().toArray();
-//        Arrays.sort(indiKey);
-//        
-//        for(Object retval: indiKey) {
-//        	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
-//            
-//        	if(indiInfo.getBirthDate()!=null) {
-//        		Date BirthDate = indiInfo.getBirthDate();
-//        		
-//       		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-//       		    Date utilDate = null;
-//       		    
-//       		    try {
-//       		    	formatter.setLenient(false);
-//       				utilDate = formatter.parse(BirthDate.toString());
-//       			} catch (ParseException e) {
-//       				//e.printStackTrace();
-//
-//               		
-//               			System.out.println(indiInfo.getName()+" has an Invalid Birth Date");}
-//       				
-//       				
-//       			}
-//        	if(indiInfo.getDeathDate()!=null) {
-//        		Date deathDate = indiInfo.getDeathDate();
-//        		
-//       		 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-//       		    Date utilDate = null;
-//       		    
-//       		    try {
-//       		    	formatter.setLenient(false);
-//       				utilDate = formatter.parse(deathDate.toString());
-//       			} catch (ParseException e) {
-//       				//e.printStackTrace();
-//
-//               		
-//               			System.out.println(indiInfo.getName()+" has an Invalid Death Date");}
-//       				
-//       				
-//       			}
-//        		}
-//        	}
-//        }
-//	
-	
-	
-
-
 public static void MarriageAfterDeath(HashMap individualInfo, HashMap familyInfo) {
 	System.out.println("=============Marriage After Death Cases User Story 04============");
 	if(familyInfo != null && !familyInfo.isEmpty()) {
@@ -267,8 +186,91 @@ public static boolean datebetweenRange(Date d,int range)
 	else
 	return false;
 }
-
+public static void DeathInLast30Days(HashMap individualInfo)
+{
+	Global.printTitle("Person(s) Who have died in past 30 days User Story 40");
+	Map<String, Integer> map = new HashMap<String, Integer>();
+	if(individualInfo != null && !individualInfo.isEmpty()) {
+		Object[] indiKey = individualInfo.keySet().toArray();
+        Arrays.sort(indiKey);
+        
+        for(Object retval: indiKey) {
+        	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            
+        	if(indiInfo.getDeathDate()!=null) {
+        		if(datebetweenRange(indiInfo.getDeathDate(),-30))
+        		{
+        			System.out.print("Death of "+indiInfo.getName()+" occured in last 30 days ("+indiInfo.getDeathDate()+")");
+        		}
+        	}
+        }
+       
+	}
 }
+public static void Datetodayorprevious(HashMap individualInfo, HashMap familyInfo)
+{
+	Global.printTitle("Dates that are Invalid i.e not before today or today User Story 30");
+	Map<String, Integer> map = new HashMap<String, Integer>();
+	 Date today=new Date();
+	if(individualInfo != null && !individualInfo.isEmpty()) {
+		Object[] indiKey = individualInfo.keySet().toArray();
+        Arrays.sort(indiKey);
+        
+        for(Object retval: indiKey) {
+        	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+           
+        	if(indiInfo.getBirthDate()!=null) {
+        		if(indiInfo.getBirthDate().after(today))
+        		System.out.println(indiInfo.getName()+"has an Invalid Birth Date:"+indiInfo.getBirthDate()+" i.e. the Date is not today or before today but after");
+        		
+        		
+        	}
+        	if(indiInfo.getDeathDate()!=null) {
+        	if(indiInfo.getDeathDate().after(today))
+            	System.out.println(indiInfo.getName()+"has an Invalid Death Date:"+indiInfo.getDeathDate()+" i.e. the Date is not today or before today but after");
+        	}
+        }
+       
+	}
+	if(familyInfo != null && !familyInfo.isEmpty()) {
+		Object[] famKey = familyInfo.keySet().toArray();
+        Arrays.sort(famKey);
+        
+        for(Object retval: famKey) {
+        	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
+        	
+        	if(famInfo.getMarriageDate()!=null) {
+        		Date marriageDate = famInfo.getMarriageDate();
+        		
+        		if(famInfo.getHusband()!=0 && famInfo.getWife()!=0) {
+        			IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+        			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+        			
+        			if(husbandInfo!=null && wifeInfo!=null  && marriageDate.after(today))
+        				System.out.println("husband:"+husbandInfo.getName()+" and wife:"+wifeInfo.getName() + " has an incorrect Marriage Date:"+marriageDate);
+        			
+        			
+        		}
+        	}
+        	if(famInfo.getDivorceDate()!=null) {
+        		Date divdate = famInfo.getDivorceDate();
+        		
+        		if(famInfo.getHusband()!=0 && famInfo.getWife()!=0) {
+        			IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+        			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+        			
+        			if(husbandInfo!=null && wifeInfo!=null  && divdate.after(today))
+        				System.out.println("husband:"+husbandInfo.getName()+" and wife:"+wifeInfo.getName() + " has an incorrect divorce Date:"+divdate);
+        			
+        			
+        		}
+        	}
+        }
+}
+	
+}
+}
+
 
 
 

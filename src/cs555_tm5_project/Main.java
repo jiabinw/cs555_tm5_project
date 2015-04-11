@@ -333,6 +333,8 @@ public class Main {
         JiabinFunction.showPeopleWhoseParentsGetDivorced(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.youngMom(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.oldMom(familyInfoObjMap, individualInfoObjMap);
+        HiteshFunction.DeathInLast30Days(individualInfoObjMap);
+        HiteshFunction.Datetodayorprevious(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

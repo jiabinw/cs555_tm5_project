@@ -335,6 +335,8 @@ public class Main {
         SiyuanFunction.oldMom(familyInfoObjMap, individualInfoObjMap);
         HiteshFunction.DeathInLast30Days(individualInfoObjMap);
         HiteshFunction.Datetodayorprevious(individualInfoObjMap, familyInfoObjMap);
+        SavioFunction.displayListOfOrphans(individualInfoObjMap, familyInfoObjMap);
+        SavioFunction.displayListOfIndividualsBornOutOfWedlock(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

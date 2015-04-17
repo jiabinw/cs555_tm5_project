@@ -223,4 +223,70 @@ public class SavioFunction {
 		
 		System.out.println("\n***** End of Output for US37 *****\n");
 	}
+	
+	public static void displayListOfOrphans(HashMap individualInfo, HashMap familyInfo) {
+		System.out.println("\n***** Output for US23 *****\n");
+		System.out.println("***** List of Orphaned Individuals *****\n");
+		
+		if(individualInfo != null && !individualInfo.isEmpty() && familyInfo != null && !familyInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	if(indiInfo.getChildOfFamPtr() > 0) {
+            		if(indiInfo.getDeathDate() == null) {
+            			FamilyInfo famInfo = (FamilyInfo)familyInfo.get(indiInfo.getChildOfFamPtr());
+            			
+            			IndividualInfo fatherInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+            			IndividualInfo motherInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+            			
+            			if(fatherInfo.getDeathDate() != null && motherInfo.getDeathDate() != null) {
+            				System.out.println(indiInfo.getName() + " (with ID: " + Global.rebuildIdentifier(retval.toString(), 'I') + ") is an orphan.");
+            			}
+            		}
+            	} else {
+            		System.out.println(indiInfo.getName() + " (with ID: " + Global.rebuildIdentifier(retval.toString(), 'I') + ") may be an orphan since no family information was found.");
+            	}
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US23 *****\n");
+	}
+	
+	public static void displayListOfIndividualsBornOutOfWedlock(HashMap individualInfo, HashMap familyInfo) {
+		System.out.println("\n***** Output for US31 *****\n");
+		System.out.println("***** List of Individuals born out of wedlock *****\n");
+		
+		boolean isFirstRecord = true;
+		
+		if(individualInfo != null && !individualInfo.isEmpty() && familyInfo != null && !familyInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	if(indiInfo.getChildOfFamPtr() > 0) {
+            		if(indiInfo.getBirthDate() != null) {
+            			FamilyInfo famInfo = (FamilyInfo)familyInfo.get(indiInfo.getChildOfFamPtr());
+            			
+            			if(famInfo.getMarriageDate() != null && indiInfo.getBirthDate().before(famInfo.getMarriageDate())) {
+            				if(isFirstRecord)
+    	        	        	isFirstRecord = false;
+    	        	        else
+    	        	        	System.out.println("");
+            				
+            				System.out.println(indiInfo.getName() + " (with ID: " + Global.rebuildIdentifier(retval.toString(), 'I') + ") was born out of wedlock.");
+            				System.out.println("Birth Date: " + new SimpleDateFormat("dd-MMM-YYYY").format(indiInfo.getBirthDate()));
+            				System.out.println("Parent's Marriage Date: " + new SimpleDateFormat("dd-MMM-YYYY").format(famInfo.getMarriageDate()));
+            			}
+            		}
+            	}
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US31 *****\n");
+	}
 }

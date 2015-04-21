@@ -244,14 +244,76 @@ public class JiabinFunction {
 		}
 		return result;
 	}
+	//ChildrenOfEveryIndividual
+	public static HashMap<Integer, ArrayList<Integer>> showChildrenOfEveryIndi(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
+		
+		for(Map.Entry<Integer, IndividualInfo>entry : individualInfoObjMap.entrySet()){
+			IndividualInfo indi = entry.getValue();
+			ArrayList<Integer> childList = new ArrayList<Integer>();
+			if(!(indi.getSpouseOfFamPtr().isEmpty())){
+                 for(Integer i : indi.getSpouseOfFamPtr()){
+                	 FamilyInfo spouseFamily = familyInfoObjMap.get(i);
+                	 if(!spouseFamily.getChildren().isEmpty()){
+                		 ArrayList<Integer> l = spouseFamily.getChildren();
+                    	 for(Integer p : l){
+                    		 childList.add(p);
+                    	 }
+                    	 
+                	 }                	 
+                 }
+                 if(!childList.isEmpty()){
+                	 result.put(entry.getKey(), childList);
+                 }                 
+			}
+			
+		}		
+		Global.printTitle("ChildrenOfEveryIndividual");
+		for(Map.Entry<Integer, ArrayList<Integer>> entry : result.entrySet()){
+			System.out.print(individualInfoObjMap.get(entry.getKey()).getName()+"'s Children: ");
+			for(Integer i : entry.getValue()){
+				System.out.print(Global.rebuildIdentifier(i, 'I')+individualInfoObjMap.get(i).getName()+"  ");
+			}
+			System.out.println("");
+		}		
+		return result;
+	}
 	
-	 public static int getLivingPeriod(IndividualInfo indi) {
-	    	if(indi.getBirthDate() != null && indi.getDeathDate() != null){
-	    		return Global.AgeAtSpecificTime(indi.getBirthDate(), indi.getDeathDate());
-	    	} else {
-	    		return 0;
-	    	}
-	    }
+	//SiblingsOfEveryIndividual
+	public static HashMap<Integer, ArrayList<Integer>> showSiblingsOfEveryIndi(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
+		HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
+        for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+			IndividualInfo indi = entry.getValue();
+            if(indi.getChildOfFamPtr() != -1){
+            	FamilyInfo fami = familyInfoObjMap.get(indi.getChildOfFamPtr());
+				@SuppressWarnings("unchecked")
+				ArrayList<Integer> childList = (ArrayList<Integer>) fami.getChildren().clone();
+            	if(childList.size()>=2){
+            		childList.remove(childList.indexOf(entry.getKey()));
+                	result.put(entry.getKey(), childList);
+            	}
+            }
+        }  
+        
+		Global.printTitle("SiblingsOfEveryIndividual");		
+		for(Map.Entry<Integer, ArrayList<Integer>> entry : result.entrySet()){
+			System.out.print(individualInfoObjMap.get(entry.getKey()).getName()+"'s Siblings:");
+			for(Integer i : entry.getValue()){
+				System.out.print(Global.rebuildIdentifier(i, 'I')+" "+individualInfoObjMap.get(i).getName()+"  ");
+			}
+			System.out.println();
+		}
+		
+		return result;
+	}
+		
+	public static int getLivingPeriod(IndividualInfo indi) {
+    	if(indi.getBirthDate() != null && indi.getDeathDate() != null){
+    		return Global.AgeAtSpecificTime(indi.getBirthDate(), indi.getDeathDate());
+    	} else {
+    		return 0;
+    	}
+	}
 }
 
 

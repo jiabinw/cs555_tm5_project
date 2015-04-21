@@ -35,8 +35,8 @@ public class FamilyInfo {
         return children;
     }
 
-    public void setChildren(ArrayList<Integer> children) {
-        this.children = children;
+    public void setChildren(Integer children) {
+        this.children.add(children);
     }
 
 	public Date getMarriageDate() {

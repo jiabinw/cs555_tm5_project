@@ -3,9 +3,6 @@ package cs555_tm5_project;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Helper.Global;
-
-
 /**
  *
  * @author savio_000
@@ -15,7 +12,7 @@ public class IndividualInfo {
     private String sex = "";
     private Date birthDate = null;
     private Date deathDate = null;
-    private int childOfFamPtr;
+    private int childOfFamPtr = -1;
     private ArrayList<Integer> spouseOfFamPtr = new ArrayList<Integer>();
 
     public String getName() {

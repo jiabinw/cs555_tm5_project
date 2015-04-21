@@ -1,0 +1,135 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 2
+1 DATE 11 MAR 2015
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME Hitesh
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Edwin Augustus /Stevens/
+2 GIVN Edwin Augustus
+2 SURN Stevens
+2 _MARNM Stevens
+1 SEX M
+1 BIRT
+2 DATE 28 JUL 1795
+1 DEAT Y
+2 DATE 8 AUG 1868
+1 FAMS @F1@
+1 FAMS @F2@
+1 FAMC @F3@
+0 @I2@ INDI
+1 NAME Colonel John /Stevens III/
+2 GIVN Colonel John
+2 SURN Stevens III
+2 _MARNM Stevens III
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1749
+1 DEAT Y
+2 DATE 1 JAN 1838
+1 FAMS @F3@
+0 @I3@ INDI
+1 NAME Rachel /Cox/
+2 GIVN Rachel
+2 SURN Cox
+2 _MARNM Stevens
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 1761
+1 DEAT Y
+2 DATE 1 JAN 1839
+1 FAMS @F3@
+0 @I4@ INDI
+1 NAME Mary Barton /Picton/
+2 GIVN Mary Barton
+2 SURN Picton
+2 _MARNM Stevens
+1 SEX F
+1 DEAT Y
+1 FAMS @F2@
+0 @I5@ INDI
+1 NAME Mary Picton /Stevens/
+2 GIVN Mary Picton
+2 SURN Stevens
+2 _MARNM Stevens
+1 SEX F
+1 BIRT
+2 DATE 19 MAY 1840
+1 DEAT Y
+2 DATE 21 SEP 1903
+1 FAMC @F2@
+0 @I6@ INDI
+1 NAME Martha Bayard /Dod/
+2 GIVN Martha Bayard
+2 SURN Dod
+2 _MARNM Stevens
+1 SEX F
+1 BIRT
+2 DATE 15 MAY 1831
+1 DEAT Y
+2 DATE 1 APR 1899
+1 FAMS @F1@
+0 @I7@ INDI
+1 NAME Caroline Bayard /Stevens/
+2 GIVN Caroline Bayard
+2 SURN Stevens
+2 _MARNM Stevens
+1 SEX F
+1 BIRT
+2 DATE 6 MAY 1980
+1 DEAT Y
+1 FAMC @F1@
+0 @I8@ INDI
+1 NAME Richard /Stevens/
+2 GIVN Richard
+2 SURN Stevens
+2 _MARNM Stevens
+1 SEX M
+1 BIRT
+2 DATE 1 MAY 1868
+1 DEAT Y
+1 FAMS @F4@
+1 FAMC @F1@
+0 @I9@ INDI
+1 NAME Michelle /Stevens/
+2 GIVN Michelle
+2 SURN Stevens
+2 _MARNM Stevens
+1 SEX F
+1 BIRT
+2 DATE 6 MAY 1875
+1 FAMS @F4@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I6@
+1 CHIL @I7@
+1 CHIL @I8@
+1 MARR
+2 DATE 29 JUL 1990
+1 _CURRENT Y
+0 @F2@ FAM
+1 HUSB @I1@
+1 WIFE @I4@
+1 CHIL @I5@
+1 _CURRENT N
+0 @F3@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 _CURRENT Y
+0 @F4@ FAM
+1 HUSB @I8@
+1 WIFE @I9@
+1 MARR
+2 DATE 8 JUL 1880
+1 DIV
+2 DATE 5 APR 1875
+1 _CURRENT Y
+0 TRLR

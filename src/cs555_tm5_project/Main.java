@@ -178,7 +178,7 @@ public class Main {
                         case "CHIL" :
                             temp = tagVal.replace("@", "");
                             temp = temp.replace("I", "");
-                            famInfo.getChildren().add(Integer.parseInt(temp));
+                            famInfo.setChildren(Integer.parseInt(temp));
                             familyInfoObjMap.put(fam_ID, famInfo);
                             break;
                         case "MARR" :
@@ -310,6 +310,8 @@ public class Main {
 	}
     
     private static void UserStoryMethods(){
+       
+
     	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
         SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
         HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
@@ -337,9 +339,15 @@ public class Main {
         HiteshFunction.Datetodayorprevious(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayListOfOrphans(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayListOfIndividualsBornOutOfWedlock(individualInfoObjMap, familyInfoObjMap);
+<<<<<<< Updated upstream
         SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);
         
+=======
+        
+        JiabinFunction.showChildrenOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
+        JiabinFunction.showSiblingsOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
+>>>>>>> Stashed changes
     }
     
     private static void populateMonthMap() {

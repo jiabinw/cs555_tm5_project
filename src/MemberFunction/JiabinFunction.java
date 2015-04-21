@@ -284,7 +284,7 @@ public class JiabinFunction {
 		HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
         for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
 			IndividualInfo indi = entry.getValue();
-            if(indi.getChildOfFamPtr() != -1){
+            if(indi.getChildOfFamPtr() != 0){
             	FamilyInfo fami = familyInfoObjMap.get(indi.getChildOfFamPtr());
 				@SuppressWarnings("unchecked")
 				ArrayList<Integer> childList = (ArrayList<Integer>) fami.getChildren().clone();

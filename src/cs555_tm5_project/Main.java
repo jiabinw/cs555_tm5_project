@@ -339,15 +339,11 @@ public class Main {
         HiteshFunction.Datetodayorprevious(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayListOfOrphans(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayListOfIndividualsBornOutOfWedlock(individualInfoObjMap, familyInfoObjMap);
-<<<<<<< Updated upstream
-        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
-        SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);
-        
-=======
-        
         JiabinFunction.showChildrenOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.showSiblingsOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
->>>>>>> Stashed changes
+        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
+        SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);        
+        
     }
     
     private static void populateMonthMap() {

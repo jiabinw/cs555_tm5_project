@@ -12,7 +12,7 @@ public class IndividualInfo {
     private String sex = "";
     private Date birthDate = null;
     private Date deathDate = null;
-    private int childOfFamPtr = -1;
+    private int childOfFamPtr;
     private ArrayList<Integer> spouseOfFamPtr = new ArrayList<Integer>();
 
     public String getName() {

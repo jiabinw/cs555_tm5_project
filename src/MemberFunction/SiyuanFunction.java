@@ -361,6 +361,7 @@ public class SiyuanFunction {
 				if (indiv.getChildOfFamPtr() != 0) {
 					famC = indiv.getChildOfFamPtr();
 					ArrayList<Integer> thisFam = new ArrayList<Integer>();
+										
 					FamilyInfo fam = familyInfoObjMap.get(famC);
 					thisFam = fam.getChildren();
 					if (!thisFam.contains(retval)) {

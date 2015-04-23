@@ -342,8 +342,9 @@ public class Main {
         JiabinFunction.showChildrenOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.showSiblingsOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
-        SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);        
-        
+        SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);   
+        HiteshFunction.CouplesWithLargeAgeDiff(familyInfoObjMap, individualInfoObjMap, 10);
+        HiteshFunction.ChildrenBornAfterFathersDeath(individualInfoObjMap,familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

@@ -269,6 +269,64 @@ public static void Datetodayorprevious(HashMap individualInfo, HashMap familyInf
 }
 	
 }
+public static void ChildrenBornAfterFathersDeath(HashMap individualInfo, HashMap familyInfo)
+{
+	System.out.println("==========USER STORY 24========");
+	if(individualInfo != null && !individualInfo.isEmpty() && familyInfo != null && !familyInfo.isEmpty()) {
+		Object[] indiKey = individualInfo.keySet().toArray();
+        Arrays.sort(indiKey);
+        
+        for(Object retval: indiKey) {
+        	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+        	
+        	if(indiInfo.getChildOfFamPtr() > 0) {
+        		if(indiInfo.getBirthDate() != null) {
+        			FamilyInfo famInfo = (FamilyInfo)familyInfo.get(indiInfo.getChildOfFamPtr());
+        			
+        			IndividualInfo fatherInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+        			
+        			if(fatherInfo.getDeathDate()!=null)
+        			{
+        			if(fatherInfo.getDeathDate().before(indiInfo.getBirthDate())) {
+        				System.out.println("Individual-"+indiInfo.getName()+" was born on ("+indiInfo.getBirthDate()+") after their father-:"+fatherInfo.getName()+"'s death("+fatherInfo.getDeathDate()+")");
+        			}}
+        		}
+        	} 
+        }
+	}
+	System.out.println("=============================");
+}
+public static void CouplesWithLargeAgeDiff(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap,int ageDifference)
+{
+	
+System.out.println("==========USER STORY 22========");
+	for(Map.Entry<Integer, FamilyInfo> entry : familyInfoObjMap.entrySet()){
+		
+	
+
+    	
+		FamilyInfo family = entry.getValue();
+		
+		Date marDate = family.getMarriageDate();
+		IndividualInfo husband = individualInfoObjMap.get(family.getHusband());
+		IndividualInfo wife = individualInfoObjMap.get(family.getWife());
+       if(husband.getBirthDate()!=null && wife.getBirthDate()!=null)
+       {
+		int husbandMAge = Global.getAge(husband.getBirthDate());
+       
+		int wifeMAge = Global.getAge(wife.getBirthDate());
+		//System.out.println(Math.abs(husbandMAge-wifeMAge));
+		//System.out.println();
+
+		if(Math.abs(husbandMAge-wifeMAge) >ageDifference)
+		{
+			System.out.println("Couple:"+husband.getName()+" and "+wife.getName()+" has an age difference-:"+Math.abs(husbandMAge-wifeMAge)+" years, (greater than "+ageDifference+" years)");
+		}
+       }
+	} 
+
+System.out.println("=============================");
+}
 }
 
 

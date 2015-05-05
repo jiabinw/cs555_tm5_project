@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -262,6 +265,39 @@ public class Global {
 		int totalDays = whatMonth(numMonth);
 		totalDays = totalDays + numDay;
 		return totalDays;
+	}
+	
+	public static String getLastName(String name) {
+		String lname = "";
+		
+		if(!name.isEmpty()) {
+			String[] nameArr = name.split(" ");
+			
+			if(nameArr.length > 1)
+				lname = nameArr[nameArr.length-1];
+		}
+		
+		return lname;
+	}
+	
+	public static HashMap sortByKeys(HashMap map) { 
+       List list = new LinkedList(map.entrySet());
+       
+       Collections.sort(list, new Comparator() {
+            public int compare(Object o1, Object o2) {
+               return ((Comparable) ((Map.Entry) (o1)).getKey())
+                  .compareTo(((Map.Entry) (o2)).getKey());
+            }
+       });
+
+       HashMap sortedHashMap = new LinkedHashMap();
+       
+       for (Iterator it = list.iterator(); it.hasNext();) {
+              Map.Entry entry = (Map.Entry) it.next();
+              sortedHashMap.put(entry.getKey(), entry.getValue());
+       }
+       
+       return sortedHashMap;
 	}
 }
 

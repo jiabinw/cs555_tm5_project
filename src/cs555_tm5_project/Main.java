@@ -310,9 +310,7 @@ public class Main {
 	}
     
     private static void UserStoryMethods(){
-       
-
-    	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
+      	SavioFunction.deathBeforeBirth(individualInfoObjMap); // User Story 01
         SavioFunction.marriageBeforeBirth(individualInfoObjMap, familyInfoObjMap); // User Story 02
         HiteshFunction.MarriageAfterDeath(individualInfoObjMap, familyInfoObjMap);
         JiabinFunction.marriageBeforeLegalAge(familyInfoObjMap, individualInfoObjMap);
@@ -341,10 +339,12 @@ public class Main {
         SavioFunction.displayListOfIndividualsBornOutOfWedlock(individualInfoObjMap, familyInfoObjMap);
         JiabinFunction.showChildrenOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.showSiblingsOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
-        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
+//        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);   
         HiteshFunction.CouplesWithLargeAgeDiff(familyInfoObjMap, individualInfoObjMap, 10);
         HiteshFunction.ChildrenBornAfterFathersDeath(individualInfoObjMap,familyInfoObjMap);
+    	SavioFunction.displayFamilyInfoHavingChildrenBornOnSameDate(individualInfoObjMap, familyInfoObjMap);
+        SavioFunction.displayIndividualsWithIncorrectOrMissingLastNames(individualInfoObjMap, familyInfoObjMap);
     }
     
     private static void populateMonthMap() {

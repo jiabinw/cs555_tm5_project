@@ -4,8 +4,10 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import Helper.Global;
 import cs555_tm5_project.FamilyInfo;
@@ -307,9 +309,13 @@ public class SiyuanFunction {
 	}
 
 	public static void checkInvidIdForFam(
-			HashMap<Integer, FamilyInfo> familyInfoObjMap,
-			HashMap<Integer, IndividualInfo> individualInfoObjMap) {
+			HashMap<Integer, FamilyInfo> familyInfoObjMap2,
+			HashMap<Integer, IndividualInfo> individualInfoObjMap2) {
 		Global.printTitle("US 33: Check error if everyone in family has own individual id");
+		HashMap<Integer, IndividualInfo> individualInfoObjMap = new HashMap<Integer, IndividualInfo>(
+				individualInfoObjMap2);
+		HashMap<Integer, FamilyInfo> familyInfoObjMap = new HashMap<Integer, FamilyInfo>(
+				familyInfoObjMap2);
 		if (familyInfoObjMap != null && !familyInfoObjMap.isEmpty()) {
 			Object[] famKey = familyInfoObjMap.keySet().toArray();
 			Arrays.sort(famKey);
@@ -335,7 +341,8 @@ public class SiyuanFunction {
 					familyNo.addAll(thisIndiv.getSpouseOfFamPtr());
 					familyNo.add(thisIndiv.getChildOfFamPtr());
 					if (!familyNo.contains(retval)) {
-						System.out.println("Error: Mismatch of individualID @I"+ ind +" familyID @F"+retval);
+						System.out.println("Error: Mismatch of individualID @I"
+								+ ind + " familyID @F" + retval);
 					}
 
 				}
@@ -347,9 +354,14 @@ public class SiyuanFunction {
 	}
 
 	public static void checkFamIdForIndiv(
-			HashMap<Integer, FamilyInfo> familyInfoObjMap,
-			HashMap<Integer, IndividualInfo> individualInfoObjMap) {
+			HashMap<Integer, FamilyInfo> familyInfoObjMap2,
+			HashMap<Integer, IndividualInfo> individualInfoObjMap2) {
 		Global.printTitle("US 34: Check error if every individual has family id");
+		HashMap<Integer, IndividualInfo> individualInfoObjMap = new HashMap<Integer, IndividualInfo>(
+				individualInfoObjMap2);
+		HashMap<Integer, FamilyInfo> familyInfoObjMap = new HashMap<Integer, FamilyInfo>(
+				familyInfoObjMap2);
+
 		if (individualInfoObjMap != null && !individualInfoObjMap.isEmpty()) {
 			Object[] indivKey = familyInfoObjMap.keySet().toArray();
 			Arrays.sort(indivKey);
@@ -362,11 +374,12 @@ public class SiyuanFunction {
 				if (indiv.getChildOfFamPtr() != 0) {
 					famC = indiv.getChildOfFamPtr();
 					ArrayList<Integer> thisFam = new ArrayList<Integer>();
-										
+
 					FamilyInfo fam = familyInfoObjMap.get(famC);
 					thisFam = fam.getChildren();
 					if (!thisFam.contains(retval)) {
-						System.out.println("Error: Mismatch of individualID @I"+ retval +" familyID @F"+famC);
+						System.out.println("Error: Mismatch of individualID @I"
+								+ retval + " familyID @F" + famC);
 					}
 					if (indiv.getSpouseOfFamPtr() != null) {
 						famS = indiv.getSpouseOfFamPtr();
@@ -379,7 +392,11 @@ public class SiyuanFunction {
 							if (fam1.getWife() != 0)
 								thisFam1.add(fam1.getWife());
 							if (!thisFam1.contains(retval))
-								System.out.println("Error: Mismatch of individualID @I"+ retval +" familyID @F"+famS);
+								System.out
+										.println("Error: Mismatch of individualID @I"
+												+ retval
+												+ " familyID @F"
+												+ famS);
 						}
 
 					}
@@ -391,5 +408,122 @@ public class SiyuanFunction {
 		System.out.println();
 		System.out.println("***** End of Output for US34 *****");
 	}
+
+	public static void genderInfo(
+			HashMap<Integer, IndividualInfo> individualInfoObjMap) {
+		HashMap<Integer, IndividualInfo> male = new HashMap<Integer, IndividualInfo>();
+		HashMap<Integer, IndividualInfo> female = new HashMap<Integer, IndividualInfo>();
+		Global.printTitle("US 39: List all gender related information of this family");
+
+		for (Map.Entry<Integer, IndividualInfo> ret : individualInfoObjMap
+				.entrySet()) {
+			IndividualInfo indiv = ret.getValue();
+			ret.getKey();
+
+			if (indiv.getSex() != null) {
+
+				if (indiv.getSex().equalsIgnoreCase("M")) {
+					male.put(ret.getKey(), indiv);
+
+				}
+				if (indiv.getSex().equalsIgnoreCase("F")) {
+					female.put(ret.getKey(), indiv);
+				}
+			}
+		}
+		System.out.println("Male member in the family with size is "
+				+ male.size());
+		for (Map.Entry<Integer, IndividualInfo> indiv : male.entrySet()) {
+			System.out.println("@I" + indiv.getKey() + " "
+					+ indiv.getValue().getName());
+		}
+		System.out.println();
+		System.out.println("Male member in the family with size is "
+				+ female.size());
+		for (Map.Entry<Integer, IndividualInfo> indiv : female.entrySet()) {
+			System.out.println("@I" + indiv.getKey() + " "
+					+ indiv.getValue().getName());
+		}
+
+		System.out.println("Gender ratio for this family is: male "
+				+ male.size() + "/" + individualInfoObjMap.size()
+				+ ", and female " + female.size() + "/"
+				+ individualInfoObjMap.size());
+		System.out.println("***** End of Output for US39 *****");
+
+	}
+
+	public static void youngParents(
+			HashMap<Integer, FamilyInfo> familyInfoObjMap,
+			HashMap<Integer, IndividualInfo> individualInfoObjMap) {
+		Global.printTitle("US 21: List all young parents who was under 18 when had the first child ");
+
+		for (Map.Entry<Integer, FamilyInfo> fam : familyInfoObjMap.entrySet()) {
+
+			if (fam.getValue().getChildren() != null) {
+				HashMap<Integer, IndividualInfo> children = new HashMap<Integer, IndividualInfo>();
+				for (Integer c : fam.getValue().getChildren()) {
+					children.put(c, individualInfoObjMap.get(c));
+				}
+				if (fam.getValue().getHusband() != 0) {
+					IndividualInfo father = individualInfoObjMap.get(fam
+							.getValue().getHusband());
+					if (father.getBirthDate() != null) {
+						Date dadDob = father.getBirthDate();
+//						System.out.println("dadDob "+dadDob);
+						for (Map.Entry<Integer, IndividualInfo> c : children
+								.entrySet()) {
+//							System.out.println("child @I"+c.getKey());
+							if (c.getValue().getBirthDate()!=null) {
+								
+								Date childDob = c.getValue().getBirthDate();
+//								System.out.println("child dob is "+childDob);
+								float age = (childDob.getYear() - dadDob
+										.getYear())
+										+ (float) (childDob.getMonth() - dadDob
+												.getMonth()) / 12;
+//								System.out.println("age is "+age);
+								if (age < 16) {
+									System.out.println("Father @I"
+											+ fam.getValue().getHusband()
+											+ " child @I" + c.getKey());
+								}
+							}
+							else{
+//								System.out.println("wtf********"+c.getValue().getName());
+							}
+						}
+					}
+				}
+				if (fam.getValue().getWife() != 0) {
+					IndividualInfo mother = individualInfoObjMap.get(fam
+							.getValue().getWife());
+					if (mother.getBirthDate() != null) {
+						Date momDob = mother.getBirthDate();
+//						System.out.println("momDob "+momDob);
+						for (Map.Entry<Integer, IndividualInfo> c : children
+								.entrySet()) {
+							if (c.getValue().getBirthDate() != null) {
+								Date childDob = c.getValue().getBirthDate();
+//								System.out.println("childDob "+childDob);
+								float age = (childDob.getYear() - momDob
+										.getYear())
+										+ (float) (childDob.getMonth() - momDob
+												.getMonth()) / 12;
+								if (age < 16) {
+									System.out.println("Mother @I"
+											+ fam.getValue().getWife()
+											+ " child @I" + c.getKey());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		System.out.println("***** End of Output for US21 *****");
+
+	}
+	
 
 }

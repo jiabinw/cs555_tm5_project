@@ -1,10 +1,19 @@
 package MemberFunction;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import Helper.Global;
 import cs555_tm5_project.FamilyInfo;
@@ -288,5 +297,155 @@ public class SavioFunction {
 		}
 		
 		System.out.println("\n***** End of Output for US31 *****\n");
+	}
+	
+	public static void displayFamilyInfoHavingChildrenBornOnSameDate(HashMap individualInfo, HashMap familyInfo) {
+		System.out.println("***** Output for US27 *****\n");
+		System.out.println("***** List the all families who had children born at the same time (i.e twins, triplets, etc) *****");
+		
+		if(familyInfo != null && !familyInfo.isEmpty()) {
+			Object[] famKey = familyInfo.keySet().toArray();
+	        Arrays.sort(famKey);
+	        
+	        for(Object retval: famKey) {
+            	FamilyInfo famInfo = (FamilyInfo)familyInfo.get(retval);
+            	
+            	IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo.getHusband());
+    			IndividualInfo wifeInfo = (IndividualInfo)individualInfo.get(famInfo.getWife());
+            	
+            	HashMap<Date, ArrayList<String>> childrenWithSameBirthDateMap = new HashMap<Date, ArrayList<String>>();
+            	
+            	if(famInfo.getChildren().size() > 1) {
+            		for(Integer childId: famInfo.getChildren()) {
+            			IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(childId);
+        			 
+            			if(childrenWithSameBirthDateMap.containsKey(indiInfo.getBirthDate())) {
+            				childrenWithSameBirthDateMap.get(indiInfo.getBirthDate()).add(indiInfo.getName());
+            			} else {
+            				ArrayList<String> nameList = new ArrayList<String>();
+            				nameList.add(indiInfo.getName());	 
+            				childrenWithSameBirthDateMap.put(indiInfo.getBirthDate(), nameList);
+            			}
+            		}
+        		 
+            		if(childrenWithSameBirthDateMap.size() > 0) {
+            			for (Map.Entry<Date, ArrayList<String>> entry : childrenWithSameBirthDateMap.entrySet()) {
+            				 ArrayList<String> value = entry.getValue();
+            				 
+            				 if(value.size() > 1) {
+            					 StringBuffer finalOutput = new StringBuffer();
+            					 
+            					 finalOutput.append(husbandInfo.getName() + " & " + wifeInfo.getName() + " have children ");
+            					 
+            					 StringBuffer names = new StringBuffer();
+            					 
+            					 for(int i=0; i<value.size(); i++) {
+            						 if(i == value.size()-1) {
+            							 names.append(" & " + value.get(i));
+            						 } else {
+            							 if(i == value.size()-2) {
+            								 names.append(value.get(i));
+            							 } else {
+            								 names.append(value.get(i) + ", ");
+            							 }
+            						 }
+            					 }
+            					 
+            					 finalOutput.append(names + " born on " + new SimpleDateFormat("dd-MMM-YYYY").format(entry.getKey()));
+            					 
+            					 System.out.println(finalOutput.toString());
+            				 }
+            			}
+            		}
+            	}
+	        }
+		}
+		
+		System.out.println("\n***** End of Output for US27 *****\n");
+	}
+	
+	public static void displayIndividualsWithIncorrectOrMissingLastNames(HashMap individualInfo, HashMap familyInfo) {
+		System.out.println("***** Output for US29 *****\n");
+		System.out.println("***** List all individuals with missing or incorrect last names *****");
+		
+		if(individualInfo != null && !individualInfo.isEmpty()) {
+			Object[] indiKey = individualInfo.keySet().toArray();
+            Arrays.sort(indiKey);
+            
+            for(Object retval: indiKey) {
+            	IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(retval);
+            	
+            	String indiLname = Global.getLastName(indiInfo.getName());
+            	
+            	if(!indiLname.isEmpty()) {
+	            	if(indiInfo.getSpouseOfFamPtr().size() > 0 && indiInfo.getSex().equals("F")) {
+            			if(indiInfo.getSpouseOfFamPtr().size() > 1) {
+            				HashMap<Date, String> marriedToMap = new HashMap<Date, String>();
+            				
+            				for(Iterator it = indiInfo.getSpouseOfFamPtr().iterator(); it.hasNext();) {
+            					FamilyInfo spousefamilyInfo = (FamilyInfo)familyInfo.get(it.next());
+            					
+            					if(spousefamilyInfo.getDivorceDate() == null && spousefamilyInfo.getMarriageDate() != null)
+            						marriedToMap.put(spousefamilyInfo.getMarriageDate(), ((IndividualInfo)individualInfo.get(spousefamilyInfo.getHusband())).getName());
+            				}
+            				
+            				if(marriedToMap.size() > 0) {
+	            				Iterator<Map.Entry<Date, String>> iterator = Global.sortByKeys(marriedToMap).entrySet().iterator();
+	        				    Map.Entry<Date, String> lastEntry = null;
+	        				    
+	        				    while (iterator.hasNext())
+	        				    	lastEntry = iterator.next();
+	        				        
+	            				String recentHusbandLname = Global.getLastName(lastEntry.getValue());
+	            				
+	            				if(!recentHusbandLname.isEmpty()) {
+	            					if(!recentHusbandLname.equals(indiLname)) {
+	            						System.out.println(indiInfo.getName() + " does not have the last name of her husband " + lastEntry.getValue());
+	            					}
+	            				}
+            				}
+            			} else {
+            				FamilyInfo famInfo_F = (FamilyInfo)familyInfo.get(indiInfo.getSpouseOfFamPtr().get(0));
+            				
+            				if(famInfo_F != null && famInfo_F.getDivorceDate() == null) {
+	            				IndividualInfo husbandInfo = (IndividualInfo)individualInfo.get(famInfo_F.getHusband());
+	            				
+	            				if(husbandInfo != null) {
+		            				String husbandLname = Global.getLastName(husbandInfo.getName());
+		            				
+		            				if(!husbandLname.isEmpty()) {
+		            					if(!husbandLname.equals(indiLname)) {
+		            						System.out.println(indiInfo.getName() + " does not have the last name of her husband " + husbandInfo.getName());
+		            					}
+		            				}
+	            				}
+            				}
+            			}
+	            	} else if(indiInfo.getChildOfFamPtr() != 0) {
+	            		FamilyInfo famInfo_M = (FamilyInfo)familyInfo.get(indiInfo.getChildOfFamPtr());
+            			
+	            		if(famInfo_M != null) {
+	            			IndividualInfo fatherInfo = (IndividualInfo)individualInfo.get(famInfo_M.getHusband());
+	            			
+	            			if(fatherInfo != null) {
+	            				String fatherLname = Global.getLastName(fatherInfo.getName());
+	            				
+	            				if(!fatherLname.isEmpty()) {
+	            					if(!fatherLname.equals(indiLname)) {
+	            						System.out.println(indiInfo.getName() + " does not have the last name of his/her father " + fatherInfo.getName());
+	            					}
+	            				}
+            				}
+	            		}
+            		} else {
+//	            		System.out.println(indiInfo.getName() + " does not have suffient information to validate his/her last name");
+	            	}
+            	} else {
+            		System.out.println(indiInfo.getName() + " (with ID: " + Global.rebuildIdentifier(retval.toString(), 'I') + ") does not have a last name.");
+            	}
+            }
+		}
+		
+		System.out.println("\n***** End of Output for US29 *****\n");
 	}
 }

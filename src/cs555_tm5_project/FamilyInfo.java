@@ -32,10 +32,10 @@ public class FamilyInfo {
     }
 
     public ArrayList<Integer> getChildren() {
-        return this.children;
+        return children;
     }
 
-    public void setChildren(int children) {
+    public void setChildren(Integer children) {
         this.children.add(children);
     }
 

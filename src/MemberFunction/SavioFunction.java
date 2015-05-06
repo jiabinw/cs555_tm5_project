@@ -318,13 +318,15 @@ public class SavioFunction {
             	if(famInfo.getChildren().size() > 1) {
             		for(Integer childId: famInfo.getChildren()) {
             			IndividualInfo indiInfo = (IndividualInfo)individualInfo.get(childId);
-        			 
-            			if(childrenWithSameBirthDateMap.containsKey(indiInfo.getBirthDate())) {
-            				childrenWithSameBirthDateMap.get(indiInfo.getBirthDate()).add(indiInfo.getName());
-            			} else {
-            				ArrayList<String> nameList = new ArrayList<String>();
-            				nameList.add(indiInfo.getName());	 
-            				childrenWithSameBirthDateMap.put(indiInfo.getBirthDate(), nameList);
+            			
+            			if(indiInfo.getBirthDate() != null) {
+	            			if(childrenWithSameBirthDateMap.containsKey(indiInfo.getBirthDate())) {
+	            				childrenWithSameBirthDateMap.get(indiInfo.getBirthDate()).add(indiInfo.getName());
+	            			} else {
+	            				ArrayList<String> nameList = new ArrayList<String>();
+	            				nameList.add(indiInfo.getName());	 
+	            				childrenWithSameBirthDateMap.put(indiInfo.getBirthDate(), nameList);
+	            			}
             			}
             		}
         		 

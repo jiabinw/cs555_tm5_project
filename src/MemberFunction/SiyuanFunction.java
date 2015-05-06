@@ -438,7 +438,7 @@ public class SiyuanFunction {
 					+ indiv.getValue().getName());
 		}
 		System.out.println();
-		System.out.println("Male member in the family with size is "
+		System.out.println("Female member in the family with size is "
 				+ female.size());
 		for (Map.Entry<Integer, IndividualInfo> indiv : female.entrySet()) {
 			System.out.println("@I" + indiv.getKey() + " "
@@ -485,8 +485,8 @@ public class SiyuanFunction {
 //								System.out.println("age is "+age);
 								if (age < 16) {
 									System.out.println("Father @I"
-											+ fam.getValue().getHusband()
-											+ " child @I" + c.getKey());
+											+ fam.getValue().getHusband()+" "+father.getName()
+											+ " child @I" + c.getKey()+" "+c.getValue().getName());
 								}
 							}
 							else{
@@ -512,8 +512,8 @@ public class SiyuanFunction {
 												.getMonth()) / 12;
 								if (age < 16) {
 									System.out.println("Mother @I"
-											+ fam.getValue().getWife()
-											+ " child @I" + c.getKey());
+											+ fam.getValue().getWife()+" "+mother.getName()
+											+ " child @I" + c.getKey()+" "+c.getValue().getName());
 								}
 							}
 						}

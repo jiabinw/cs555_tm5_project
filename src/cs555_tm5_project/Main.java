@@ -347,6 +347,8 @@ public class Main {
         JiabinFunction.showIndividualWhoLiveTooLong(familyInfoObjMap, individualInfoObjMap);
     	SavioFunction.displayFamilyInfoHavingChildrenBornOnSameDate(individualInfoObjMap, familyInfoObjMap);
         SavioFunction.displayIndividualsWithIncorrectOrMissingLastNames(individualInfoObjMap, familyInfoObjMap);
+        SiyuanFunction.genderInfo(individualInfoObjMap);
+        SiyuanFunction.youngParents(familyInfoObjMap, individualInfoObjMap);
     }
     
     private static void populateMonthMap() {

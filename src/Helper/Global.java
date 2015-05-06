@@ -106,8 +106,9 @@ public class Global {
 	   if(birth != null && specificTime != null ){	   
 		   if(specificTime.after(birth)){
 			   long diff = specificTime.getTime() - birth.getTime();
-			   int age = (int) diff/(365*24*3600*1000);
-			   return age;
+			   long age = diff/(24 * 60 * 60 * 1000);
+			   age /= 365;
+			   return (int) age;
 		   }else{
 			   return -1;
 		   }

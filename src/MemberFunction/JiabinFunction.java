@@ -314,8 +314,66 @@ public class JiabinFunction {
     		return 0;
     	}
 	}
+
+
+// List individuals who live too long  
+     public static HashMap<Integer, Integer> showIndividualWhoLiveTooLong(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
+    	 HashMap<Integer, Integer> result = new HashMap<Integer, Integer>();
+    	 int LongAge = 120;
+    	 for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+    		 IndividualInfo indi = entry.getValue();    		 
+    		 Date specificTime; 
+    		 if(indi.getDeathDate() == null){
+    			 specificTime = new Date();
+    		 } else{
+    			 specificTime = indi.getDeathDate();
+    		 }
+    		 int age = Global.AgeAtSpecificTime(indi.getBirthDate(), specificTime);
+    		 if(age >= LongAge){
+    			 result.put(entry.getKey(), age);
+    		 }
+    	 }
+    	 
+    	 Global.printTitle("Individuals Who Live Too Long");
+    	 for(Map.Entry<Integer, Integer> entry : result.entrySet()){
+    		 System.out.println(Global.rebuildIdentifier(entry.getKey(), 'I') + " "+individualInfoObjMap.get(entry.getKey()).getName() + " /Age:"+ entry.getValue());
+    	 }
+    	 
+    	 return result;
+     }
+
+
+
+// List mothers who gave birth to too many children (>7)
+     public static HashMap<Integer, ArrayList<Integer>> showMothersWhoGaveBirthTooManyChildren(HashMap<Integer, FamilyInfo> familyInfoObjMap,HashMap<Integer, IndividualInfo> individualInfoObjMap){
+    	 int numOfChildren = 5;
+    	 HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
+    	 for(Map.Entry<Integer, IndividualInfo> entry : individualInfoObjMap.entrySet()){
+    		 IndividualInfo indi = entry.getValue();
+    		 if(indi.getSex().equals("F")){
+    			 if(!indi.getSpouseOfFamPtr().isEmpty()){
+    				 ArrayList<Integer> children =  new ArrayList<Integer>();
+    				 for(int i : indi.getSpouseOfFamPtr()){
+    					 //TODO 
+    					 children.addAll(familyInfoObjMap.get(i).getChildren());
+    					     								 
+    				 }
+    				 if(children.size() >= numOfChildren){
+    					 result.put(entry.getKey(), children);
+    				 }
+    			 }
+    		 }
+    	 }
+    	 
+    	 Global.printTitle("Mothers Who Has Lots of Children(>7)");
+    	 for(Map.Entry<Integer, ArrayList<Integer>> entry : result.entrySet()){
+    		 System.out.println(Global.rebuildIdentifier(entry.getKey(), 'I') + individualInfoObjMap.get(entry.getKey()).getName()+" has " + entry.getValue().size() + " children:");
+    		 for(int i : entry.getValue()){
+    			 System.out.println(Global.rebuildIdentifier(i, 'I')+" "+individualInfoObjMap.get(i).getName());
+    		 }
+    	 }
+    	 
+    	 return result;
+     }
 }
-
-
-
 

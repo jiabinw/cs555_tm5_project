@@ -339,7 +339,7 @@ public class Main {
         SavioFunction.displayListOfIndividualsBornOutOfWedlock(individualInfoObjMap, familyInfoObjMap);
         JiabinFunction.showChildrenOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
         JiabinFunction.showSiblingsOfEveryIndi(familyInfoObjMap, individualInfoObjMap);
-//        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
+        SiyuanFunction.checkInvidIdForFam(familyInfoObjMap, individualInfoObjMap);
         SiyuanFunction.checkFamIdForIndiv(familyInfoObjMap, individualInfoObjMap);   
         HiteshFunction.CouplesWithLargeAgeDiff(familyInfoObjMap, individualInfoObjMap, 10);
         HiteshFunction.ChildrenBornAfterFathersDeath(individualInfoObjMap,familyInfoObjMap);

@@ -331,7 +331,8 @@ public class SiyuanFunction {
 				for (Integer ind : thisFam) {
 					IndividualInfo thisIndiv = (IndividualInfo) individualInfoObjMap
 							.get(ind);
-					ArrayList<Integer> familyNo = thisIndiv.getSpouseOfFamPtr();
+					ArrayList<Integer> familyNo = new ArrayList<Integer>();
+					familyNo.addAll(thisIndiv.getSpouseOfFamPtr());
 					familyNo.add(thisIndiv.getChildOfFamPtr());
 					if (!familyNo.contains(retval)) {
 						System.out.println("Error: Mismatch of individualID @I"+ ind +" familyID @F"+retval);
